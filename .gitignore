@@ -56,8 +56,10 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
+.env
 
 # Heroku
+Procfile
 
 # sequelize config
 config
