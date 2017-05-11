@@ -10,100 +10,12 @@ const winston = require('winston'),
         ]
     });
 
+// home route
 exports.home = (req, res) => {
-    if (req.session.uid) {
-        return res.render('landing', { auth: true });
-    }
-    res.render('landing', {
-        auth: false,
-        errors: req.session.errors
-    });
-    req.session.errors = null;
+    res.render('landing', { title: 'Languini!'});
 };
 
-exports.getLogin = (req, res) => {
-    if (req.session.uid) {
-        return res.render('landing', { auth: true });
-    }
-    res.render('landing', { auth: false });
-};
-
-exports.postLogin = (req, res) => {
-    req.checkBody('email', 'Invalid email address').isEmail();
-    req.checkBody('password', 'Password must contain at least 6 characters').isLength({ min: 6});
-    if (req.validationErrors()) {
-        req.session.errors = req.validationErrors();
-        return res.redirect('/');
-    }
-    if (req.body['sign-up'] === 'Sign-Up') {
-        database.createUser(req, res,
-            user => {
-                req.session.uid = user.uid;
-                res.redirect('/');
-            },
-            err => {
-                logger.log('error', `database.createUser error, code: ${err.code}, message: ${err.message}`);
-                req.session.errors = [{
-                    msg: err.message
-                }];
-                res.redirect('/');
-            });
-    } else {
-        database.logIn(req, res,
-            user => {
-                req.session.uid = user.uid;
-                res.redirect('/');
-            },
-            err => {
-                logger.log('error', `database.logIn error, code: ${err.code}, message: ${err.message}`);
-                req.session.errors = [{
-                    msg: err.message
-                }];
-                res.redirect('/');
-            });
-    }
-};
-
-exports.logOut = (req, res) => {
-    database.logOut(req, res,
-        () => {
-            req.session.destroy(() => {
-                res.redirect('/');
-            });
-        },
-        err => {
-            logger.log('error', `database.logIn error, code: ${err.code}, message: ${err.message}`);
-            req.session.errors = [{
-                msg: err.message
-            }];
-            res.redirect('/');
-        });
-};
-
-exports.getSurvey = (req, res) => {
-    if (req.session.uid) {
-        if (req.session.matched) {
-            database.getScore(req.session.uid,
-                score => {
-                    apiController.match(req.session.uid, score, match => {
-                        res.render('finder', {
-                            match: true,
-                            name: match.username,
-                            email: match.email,
-                            img: match.img,
-                            score: match.score
-                        });
-                    });
-                });
-        } else {
-            res.render('finder');
-        }
-
-    } else {
-        res.redirect('/');
-    }
-};
-
+// validation example with the 'express-validator package'
 exports.postSurvey = (req, res) => {
     req.body.name = req.body.name.trim();
     req.checkBody('name', `That can't be your name, can it?`).isAlpha();
