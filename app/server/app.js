@@ -2,6 +2,12 @@ const express = require('express'),
   helmet = require('helmet'),
   compression = require('compression'),
   validator = require('express-validator'),
+  session = require('express-session'),
+  crypto = require('crypto'),
+  randToken = require('rand-token').generator({
+      chars: 'A-Z',
+      source: crypto.randomBytes
+  }),
   bodyParser = require('body-parser'),
   path = require('path'),
   uuidV4 = require('uuid/v4'),
@@ -10,8 +16,11 @@ const express = require('express'),
   morgan = require('morgan'),
   pug = require('pug'),
   app = express(),
-  apiRouter = require('./routes/api'),
-  viewRouter = require('./routes/views')
+  { passport } = require('./controllers/auth.controller'), 
+  authRouter = require('./routes/auth'),
+  viewRouter = require('./routes/views'),
+  apiRouter = require('./routes/api')
+
 
 app.use(helmet())
 app.use(compression())
@@ -58,6 +67,13 @@ app.use(validator())
 // register our static assets
 app.use('/static', express.static(path.join(__dirname, '/../static')))
 
+// setup in-memory session storage (a no-no, should be using redis)
+app.use(session({ secret: randToken.generate(16), saveUninitialized: false, resave: false }));
+
+// register passport settings
+app.use(passport.initialize())
+app.use(passport.session())
+
 // register routes
 app.use('/api/', apiRouter)
 app.use('/', viewRouter)
@@ -65,5 +81,5 @@ app.use((req, res) => {
   res.status(404).render('404')
 })
 
-// export our server
+// export our server for consumption by bin/www
 module.exports = app
