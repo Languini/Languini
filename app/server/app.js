@@ -16,7 +16,7 @@ const express = require('express'),
   morgan = require('morgan'),
   pug = require('pug'),
   app = express(),
-  { passport } = require('./controllers/auth.controller'), 
+  { passport } = require('./controllers/auth.controller'),
   authRouter = require('./routes/auth'),
   viewRouter = require('./routes/views'),
   apiRouter = require('./routes/api')
@@ -74,9 +74,10 @@ app.use(session({ secret: randToken.generate(16), saveUninitialized: false, resa
 app.use(passport.initialize())
 app.use(passport.session())
 
-// register routes
+// register routers
 app.use('/api/', apiRouter)
 app.use('/', viewRouter)
+// resource not found 
 app.use((req, res) => {
   res.status(404).render('404')
 })
