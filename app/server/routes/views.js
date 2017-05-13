@@ -4,9 +4,5 @@ const express = require('express'),
 
 module.exports = router
     .get('/', viewsController.home)
-    .get('/login', viewsController.getLogin)
-    .post('/login', viewsController.postLogin)
-    .get('/logout', viewsController.logOut)
-    .get('/survey', viewsController.getSurvey)
-    .post('/survey', viewsController.postSurvey)
-    .get('/community', viewsController.getCommunity)
+    .get('/create', viewsController.logOut)
+    .get('/translate', viewsController.getSurvey)
