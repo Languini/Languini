@@ -3,5 +3,5 @@ const express = require('express'),
   authController = require('../controllers/auth.controller')
 
 module.exports = router
-  .post('/auth/login', authController.login)
-  .post('/auth/logout', authController.logout)
+  .post('/auth/login', authController.auth)
+  .post('/auth/logout', authController.auth)
