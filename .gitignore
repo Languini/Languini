@@ -63,3 +63,6 @@ Procfile
 
 # sequelize config
 config
+
+# webstorm 
+.idea
