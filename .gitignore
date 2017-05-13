@@ -65,4 +65,4 @@ Procfile
 config
 
 # webstorm 
-.idea
+.idea/
