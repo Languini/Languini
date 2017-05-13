@@ -16,11 +16,13 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   }, {
-    // classMethods: {
-    //   associate: models => {
-    //     User.hasMany(models.posts)
-    //   }
-    // }
+    classMethods: {
+      associate: models => {
+        User.hasMany(models.Translation)
+        User.hasMany(models.Answer)
+        User.hasMany(models.Comment)
+      }
+    }
   })
   return User
 }
