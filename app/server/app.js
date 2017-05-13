@@ -5,8 +5,8 @@ const express = require('express'),
   session = require('express-session'),
   crypto = require('crypto'),
   randToken = require('rand-token').generator({
-      chars: 'A-Z',
-      source: crypto.randomBytes
+    chars: 'A-Z',
+    source: crypto.randomBytes
   }),
   bodyParser = require('body-parser'),
   path = require('path'),
@@ -20,7 +20,6 @@ const express = require('express'),
   authRouter = require('./routes/auth'),
   viewRouter = require('./routes/views'),
   apiRouter = require('./routes/api')
-
 
 app.use(helmet())
 app.use(compression())
@@ -49,11 +48,6 @@ app.use(morgan(
 ))
 
 // Pug, the view engine
-app.engine('handlebars', exprHbs({
-  defaultLayout: 'main',
-  layoutsDir: path.join(__dirname, '/views/layouts'),
-  partialsDir: path.join(__dirname, '/views/partials')
-}))
 app.set('views', path.join(__dirname, '/views'))
 app.set('view engine', 'pug')
 
@@ -68,7 +62,7 @@ app.use(validator())
 app.use('/static', express.static(path.join(__dirname, '/../static')))
 
 // setup in-memory session storage (a no-no, should be using redis)
-app.use(session({ secret: randToken.generate(16), saveUninitialized: false, resave: false }));
+app.use(session({ secret: randToken.generate(16), saveUninitialized: false, resave: false }))
 
 // register passport settings
 app.use(passport.initialize())
@@ -77,7 +71,7 @@ app.use(passport.session())
 // register routers
 app.use('/api/', apiRouter)
 app.use('/', viewRouter)
-// resource not found 
+// resource not found
 app.use((req, res) => {
   res.status(404).render('404')
 })

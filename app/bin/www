@@ -1,10 +1,10 @@
 const server = require('../server/app'),
-    db = require('../server/models');
+  db = require('../server/models')
 
-server.set('port', process.env.PORT || 5000);
+server.set('port', process.env.PORT || 5000)
 
-db.sequelize.sync().then(() => {
+db.sequelize.sync({force:true}).then(() => {
     server.listen(server.get('port'), () => {
-        console.log(`App listening at http://localhost:${server.get('port')}`);
-    });
-});
+        console.log(`App listening at http://localhost:${server.get('port')}`)
+    })
+})

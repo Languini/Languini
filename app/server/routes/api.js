@@ -4,9 +4,9 @@ const express = require('express'),
   apiController = require('../controllers/api.controller')
 
 const corsOpts = {
-  origin: 'http://evening-stream-85154.herokuapp.com/',
+  origin: 'http://languini.herokuapp.com/',
   optionsSuccessStatus: 200
 }
 
 module.exports = router
-    .get('/friends', cors(corsOpts), apiController.getUsers)
+    .get('/friends', cors(corsOpts), apiController.someFunction)
