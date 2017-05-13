@@ -43,6 +43,8 @@
         "rand-token": "^0.3.0",
         "rotating-file-stream": "^1.2.2",
         "secure-random": "^1.1.1",
+        "sequelize": "^3.30.4",
+        "standard": "^10.0.2",
         "uuid": "^3.0.1",
         "whatwg-fetch": "^2.0.3",
         "winston": "^2.3.1"
