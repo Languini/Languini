@@ -4,5 +4,5 @@ const express = require('express'),
 
 module.exports = router
     .get('/', viewsController.home)
-    .get('/create', viewsController.logOut)
-    .get('/translate', viewsController.getSurvey)
+    .get('/create', viewsController.create)
+    .get('/translate', viewsController.translate)
