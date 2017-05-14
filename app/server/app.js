@@ -73,7 +73,8 @@ app.use('/api/', apiRouter)
 app.use('/', viewRouter)
 // resource not found
 app.use((req, res) => {
-  res.status(404).render('404')
+  res.status(404).send('404')
+  console.log('404')
 })
 
 // export our server for consumption by bin/www
