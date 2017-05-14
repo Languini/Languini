@@ -1,5 +1,5 @@
 // note: we can use jQuery globally with '$'
-require('wg-fetch')
+require('whatwg-fetch')
 
 const createObject = require('./create.js')
 
