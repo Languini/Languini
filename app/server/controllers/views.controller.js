@@ -15,7 +15,7 @@ exports.home = (req, res) => {
 }
 
 exports.create = (req, res) => {
-  res.render("create", { title: 'Languini!' });
+  res.render('create', { title: 'Languini!' })
 }
 
 exports.translate = (req, res) => {
