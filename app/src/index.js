@@ -4,3 +4,4 @@ require('wg-fetch')
 const createObject = require('./create.js')
 
 createObject.listenForSubmission()
+console.log("Hello World");
