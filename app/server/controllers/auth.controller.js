@@ -1,17 +1,23 @@
 require('dotenv').config()
 
 const passport = require('passport'),
-  Strategy = require('passport-facebook').Strategy
+  FacebookStrategy = require('passport-facebook').Strategy
 
-passport.use(new Strategy({
-  clientID: process.env.APP_ID,
-  clientSecret: process.env.APP_SECRET,
-  callbackURL: 'http://localhost:5000/auth/facebook/callback'
-},
-    (accessToken, refreshToken, profile, done) => {
-      // store user
-      return cb(null, profile)
-    }))
+passport.use(new FacebookStrategy({
+    clientID: process.env.APP_ID,
+    clientSecret: process.env.APP_SECRET,
+    callbackURL: 'http://localhost:5000/auth/facebook/callback',
+    profileFields:['id','displayName','emails']
+  }, (accessToken, refreshToken, profile, done) => {
+    const me = new user({
+        id:
+        email:profile.emails[0].value,
+        name:profile.displayName,
+        photo:
+    })
+  /* save if new */
+  }
+))
 
 passport.serializeUser((user, done) => {
   done(null, user.id)
