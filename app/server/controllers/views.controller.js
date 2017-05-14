@@ -14,6 +14,14 @@ exports.home = (req, res) => {
   // res.render('landing', { title: 'Languini!'})
 }
 
+exports.create = (req, res) => {
+  res.render('create', { title: 'Languini!' })
+}
+
+exports.translate = (req, res) => {
+  //
+}
+
 // // validation example with the 'express-validator package'
 // exports.postSurvey = (req, res) => {
 //   req.body.name = req.body.name.trim()

@@ -1,6 +1,6 @@
-const $ = require('jquery'),
-    require('wg-fetch');
+// note: we can use jQuery globally with '$'
+require('wg-fetch')
 
-const createObject = require('./create.js');
+const createObject = require('./create.js')
 
-createObject.listenForSubmission; 
+createObject.listenForSubmission()
