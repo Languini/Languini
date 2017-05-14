@@ -1,17 +1,25 @@
 require('dotenv').config()
 
 const passport = require('passport'),
-  Strategy = require('passport-facebook').Strategy
+  FacebookStrategy = require('passport-facebook').Strategy,
+  { User } = require('../models')
 
-passport.use(new Strategy({
+passport.use(new FacebookStrategy({
   clientID: process.env.APP_ID,
   clientSecret: process.env.APP_SECRET,
-  callbackURL: 'http://localhost:5000/auth/facebook/callback'
-},
-    (accessToken, refreshToken, profile, done) => {
-      // store user
-      return cb(null, profile)
-    }))
+  callbackURL: 'http://localhost:5000/auth/facebook/callback',
+  profileFields: ['id', 'displayName', 'photos', 'emails']
+}, (accessToken, refreshToken, profile, done) => {
+    /* should be findOrCreate */
+  User
+      .create({
+        fb_id: profile.id,
+        email: profile.emails[0].value,
+        name: profile.displayName,
+        photo: profile.photos[0].value
+      })
+}
+))
 
 passport.serializeUser((user, done) => {
   done(null, user.id)

@@ -14,6 +14,21 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true,
         unique: true
       }
+    },
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        notNull: true,
+        unique: true
+      }
+    },
+    photo: {
+      type: DataTypes.STRING,
+      validate: {
+        isUrl: true,
+        notNull: true,
+        unique: true
+      }
     }
   }, {
     classMethods: {
