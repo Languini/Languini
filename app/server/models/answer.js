@@ -4,7 +4,15 @@ module.exports = (sequelize, DataTypes) => {
     content: {
       type: DataTypes.STRING,
       validate: {
+        len: [2, 500],
         notNull: true
+      }
+    },
+    votes: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notNull: true,
+        isInt: true,
       }
     }
   }, {
