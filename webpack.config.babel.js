@@ -6,7 +6,7 @@ module.exports = {
   context: __dirname,
   devtool: 'eval',
   entry: {
-    app: './app/src/client/index.js'
+    app: path.join(__dirname, 'app', 'src', 'index.js')
   },
   output: {
     path: path.resolve(__dirname, 'app/static/dist'),
