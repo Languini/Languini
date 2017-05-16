@@ -1,21 +1,26 @@
 extends layout
 
 block content
-  <h1 class="ph6 f2 lh-copy">Create A Request</h1>
-  <form id='post-form' class="ph6 black-100" method='post'>
-    <div class="measure">
-      <label for="name" class="f6 b db mb2">Request <span class="normal black-60">(required)</span></label>
-      <input id="request" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
-      <small id="request-desc" class="f6 black-60 db mb2">Enter the exact sentence(s) you would like translated</small>
-    </div>
-    <br>
-    <div>
-      <label for="context" class="f6 b db mb2">Context <span class="normal black-60">(recommended)</span></label>
-      <textarea id="context" name="comment" class="db border-box hover-black w-100 measure-wide ba b--black-20 pa2 br2 mb2" aria-describedby="comment-desc"></textarea>
-      <small id="context-desc" class="f6 black-60">This will help users understand the context for your request, improving the accuracy of the translations.</small>
-    </div>
-    <div class="mt4">
-      <a id="submit-post" class="f6 link dim br2 ba bw1 ph3 pv2 mb2 dib black" href="">Submit</a>
-    </div>
-  </form>
+  h1(class="ph6 f2 lh-copy") Create A Request
+  form(id='post-form' class="ph6 black-100" method='post')
+    div(class="measure")
+      label(for="name" class="f6 b db mb2") Request
+        span(class="normal black-60")  (required)
+      input(id="request" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc")
+      small(id="request-desc" class="f6 black-60 db mb2") Enter the exact sentence(s) you would like translated
+    p
+      label(class="f6 b db mb2") Please select a language 
+        -
+          var langs = ['Afrikaans', 'Albanian', 'Amharic', 'Arabic', 'Armenian', 'Azerbaijani', 'Basque', 'Belarusian', 'Bengali', 'Bosnian', 'Bulgarian', 'Catalan', 'Cebuano', 'Chichewa', 'Chinese', 'Corsican', 'Croatian', 'Czech', 'Danish', 'Dutch', 'English', 'Tetun', 'Esperanto', 'Estonian', 'Filipino', 'Finnish', 'French', 'Frisian', 'Galician', 'Georgian', 'German', 'Greek', 'Gujarati', 'HaitianCreole', 'Hausa', 'Hawaiian', 'Hebrew', 'Hindi', 'Hmong', 'Hungarian', 'Icelandic', 'Igbo', 'Indonesian', 'Irish', 'Italian', 'Japanese', 'Javanese', 'Kannada', 'Kazakh', 'Khmer', 'Korean', 'Kurdish', 'Kyrgyz', 'Lao', 'Latin', 'Latvian', 'Lithuanian', 'Luxembourgish', 'Macedonian', 'Malagasy', 'Malay', 'Malayalam', 'Maltese', 'Maori', 'Marathi', 'Mongolian', 'Myanmar', 'Nepali', 'Norwegian', 'Pashto', 'Persian', 'Polish', 'Portuguese', 'Punjabi', 'Romanian', 'Russian', 'Samoan', 'ScotsGaelic', 'Serbian', 'Sesotho', 'Shona', 'Sindhi', 'Sinhala', 'Slovak', 'Slovenian', 'Somali', 'Spanish', 'Sundanese', 'Swahili', 'Swedish', 'Tajik', 'Tamil', 'Telugu', 'Thai', 'Turkish', 'Ukrainian', 'Urdu', 'Uzbek', 'Vietnamese', 'Welsh', 'Xhosa', 'Yiddish', 'Yoruba', 'Zulu']
+        select(id = "languages")
+          each lang in langs
+            option(value = lang)=lang
+    br
+    div
+      label(for="context" class="f6 b db mb2") Context
+        span(class="normal black-60")  (required)
+      textarea(id="context" name="comment" class="db border-box hover-black w-100 measure-wide ba b--black-20 pa2 br2 mb2" aria-describedby="comment-desc")
+      small(id="context-desc" class="f6 black-60") This will help users understand the context for your request, improving the accuracy of the translations.
+    div(class="mt4")
+      a(id="submit-post" class="f6 link dim br2 ba bw1 ph3 pv2 mb2 dib black" href="") Submit
   script(src='../../static/dist/bundle.min.js')

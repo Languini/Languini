@@ -4,8 +4,8 @@ module.exports = {
     connection: {
       host: '127.0.0.1',
       database: 'languini',
-      user: 'kellanriley',
-      password: 'process.env.DATABASE_PASS'
+      user: 'postgres',
+      password: 'pass'
     },
     seeds: {
       directory: './seeds'
