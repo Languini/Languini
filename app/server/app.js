@@ -1,11 +1,8 @@
-require('dotenv').config()
-
 const express = require('express'),
   helmet = require('helmet'),
   compression = require('compression'),
   validator = require('express-validator'),
   session = require('express-session'),
-  passport = require('passport'),
   crypto = require('crypto'),
   randToken = require('rand-token').generator({
     chars: 'A-Z',
@@ -19,9 +16,10 @@ const express = require('express'),
   morgan = require('morgan'),
   pug = require('pug'),
   app = express(),
-  authRouter = require('./routes/auth.routes'),
-  viewRouter = require('./routes/views.routes'),
-  apiRouter = require('./routes/api.routes')
+  { passport } = require('./controllers/auth.controller'),
+  authRouter = require('./routes/auth'),
+  viewRouter = require('./routes/views'),
+  apiRouter = require('./routes/api')
 
 app.use(helmet())
 app.use(compression())
@@ -64,23 +62,19 @@ app.use(validator())
 app.use('/static', express.static(path.join(__dirname, '/../static')))
 
 // setup in-memory session storage (a no-no, should be using redis)
-app.use(session({ secret: randToken.generate(64), saveUninitialized: true, resave: true }))
+app.use(session({ secret: randToken.generate(16), saveUninitialized: false, resave: false }))
 
-// setup passport
-require('./lib/passport.init')(passport)
+// register passport settings
 app.use(passport.initialize())
 app.use(passport.session())
 
-// register routes
-app.use('/auth', authRouter)
+// register routers
+app.use('/api/', apiRouter)
 app.use('/', viewRouter)
-app.use('/api', apiRouter)
-
-
-// resource not found request handler
+// resource not found
 app.use((req, res) => {
-  console.log(req.user)
   res.status(404).send('404')
+  console.log('404')
 })
 
 // export our server for consumption by bin/www
