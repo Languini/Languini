@@ -1,4 +1,5 @@
 const winston = require('winston'),
+  apiController = require('./api.controller'),
   logger = new (winston.Logger)({
     transports: [
       new (winston.transports.Console)(),
@@ -11,15 +12,6 @@ const winston = require('winston'),
 // home route
 exports.home = (req, res) => {
   // res.render('landing', { title: 'Languini!'})
-  res.send('home')
-}
-
-exports.create = (req, res) => {
-  res.render('create', { title: 'Languini!' })
-}
-
-exports.translate = (req, res) => {
-  //
 }
 
 // // validation example with the 'express-validator package'
