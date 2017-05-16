@@ -44,7 +44,7 @@ app.use((req, res, next) => {
 app.use(morgan(
     ':id :method :url :status :res[content-length] - :response-time ms :date[web]',
     { stream: accessLogStream },
-    { skip: (req, res) => res.statusCode < 40 }
+    { skip: (req, res) => res.statusCode < 400 }
 ))
 
 // Pug, the view engine
@@ -60,6 +60,9 @@ app.use(validator())
 
 // register our static assets
 app.use('/static', express.static(path.join(__dirname, '/../static')))
+
+// development debugging view
+require('express-debug')(app, {})
 
 // setup in-memory session storage (a no-no, should be using redis)
 app.use(session({ secret: randToken.generate(64), saveUninitialized: true, resave: true }))
@@ -77,7 +80,6 @@ app.use('/api', apiRouter)
 
 // resource not found request handler
 app.use((req, res) => {
-  console.log(req.user)
   res.status(404).send('404')
 })
 
