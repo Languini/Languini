@@ -3,16 +3,18 @@ module.exports = (sequelize, DataTypes) => {
   const Answer = sequelize.define('Answer', {
     content: {
       type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
       validate: {
-        len: [2, 500],
-        notNull: true
+        len: [2, 500]
       }
     },
     votes: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
       validate: {
-        notNull: true,
-        isInt: true,
+        isInt: true
       }
     }
   }, {

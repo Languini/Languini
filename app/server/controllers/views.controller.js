@@ -1,5 +1,4 @@
 const winston = require('winston'),
-  apiController = require('./api.controller'),
   logger = new (winston.Logger)({
     transports: [
       new (winston.transports.Console)(),
@@ -12,6 +11,7 @@ const winston = require('winston'),
 // home route
 exports.home = (req, res) => {
   // res.render('landing', { title: 'Languini!'})
+  res.send('home')
 }
 
 exports.create = (req, res) => {
