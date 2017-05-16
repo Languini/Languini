@@ -5,16 +5,15 @@ module.exports = {
       event.preventDefault()
       var request = $('#request').val().trim()
       var context = $('#context').val().trim()
-      var lang = $('#languages').attr('selectedIndex');
-      console.log(lang);
-      console.log("Button was clicked");
+      var language = $('#languages option:selected').text();
       if (request.length && context.length) {
         var translation = {
           request: request,
-          context: context
+          context: context,
+          language: language
         }
-        $.post('/api/create', translation, () => {
-          console.log('Submitted a new post')
+        $.post('/api/create', translation, (result) => {
+          console.log(result)
         })
       } else {
         alert("Please provide a request and context");
