@@ -27,9 +27,7 @@ module.exports = passport => {
         })
   }
 
-  const dehydrate = (user, cb) => {
-    cb(null, user.id)
-  }
+  const dehydrate = (user, cb) => cb(null, user.id)
 
   const rehydrate = (id, cb) => {
     User
