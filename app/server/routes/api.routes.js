@@ -10,3 +10,4 @@ const corsOpts = {
 
 module.exports = router
     .get('/friends', cors(corsOpts), apiController.someFunction)
+    .post('/create', apiController.createPost)
