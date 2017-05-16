@@ -3,6 +3,7 @@ const express = require('express'),
   compression = require('compression'),
   validator = require('express-validator'),
   session = require('express-session'),
+  passport = require('passport'),
   crypto = require('crypto'),
   randToken = require('rand-token').generator({
     chars: 'A-Z',
@@ -16,10 +17,9 @@ const express = require('express'),
   morgan = require('morgan'),
   pug = require('pug'),
   app = express(),
-  { passport } = require('./controllers/auth.controller'),
-  authRouter = require('./routes/auth'),
-  viewRouter = require('./routes/views'),
-  apiRouter = require('./routes/api')
+  authRouter = require('./routes/auth.routes'),
+  viewRouter = require('./routes/views.routes'),
+  apiRouter = require('./routes/api.routes')
 
 app.use(helmet())
 app.use(compression())
@@ -62,19 +62,23 @@ app.use(validator())
 app.use('/static', express.static(path.join(__dirname, '/../static')))
 
 // setup in-memory session storage (a no-no, should be using redis)
-app.use(session({ secret: randToken.generate(16), saveUninitialized: false, resave: false }))
+app.use(session({ secret: randToken.generate(64), saveUninitialized: true, resave: true }))
 
-// register passport settings
+// setup passport
+require('./lib/passport.init')(passport)
 app.use(passport.initialize())
 app.use(passport.session())
 
-// register routers
-app.use('/api/', apiRouter)
+// register routes
+app.use('/auth', authRouter)
 app.use('/', viewRouter)
-// resource not found
+app.use('/api', apiRouter)
+
+
+// resource not found request handler
 app.use((req, res) => {
+  console.log(req.user)
   res.status(404).send('404')
-  console.log('404')
 })
 
 // export our server for consumption by bin/www
