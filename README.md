@@ -38,3 +38,9 @@ _You should see a new button with the label “Compare & Pull Request”). Click
 1. In `app/server/knex`, run `knex seed:run` to seed your database
 
 2. Run `DEBUG=express:* <insert_npm_script_key_here>` to run app in debug mode
+
+## Testing
+
+1. Run `yarn test` to run tests
+
+2. Run `yarn cover` to view coverage
