@@ -50,7 +50,7 @@ exports.seed = (knex, Promise) => {
       fb_id: '12345abcdefghi',
       email: 'jhunt@gmail.com',
       name: 'James Hunt',
-      photo: 'https://static.pexels.com/photos/91227/pexels-photo-91227.jpeg',
+      photo: 'https://static.pexels.com/photos/91227/pexels-photo-91228.jpeg',
       createdAt: '08/19/2014 00:00:00',
       updatedAt: '08/19/2014 00:00:00'
     }

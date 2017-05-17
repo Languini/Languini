@@ -3,7 +3,7 @@ module.exports = {
   listenForSubmission: () => {
     $('#submit-post').on('click', (event) => {
       event.preventDefault()
-      var translation = {
+      const translation = {
         request: $('#request').val().trim(),
         context: $('#context').val().trim()
       }
