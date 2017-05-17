@@ -86,10 +86,9 @@ app.use((req, res) => {
 
 // 'something failed' handler
 app.use((err, req, res, next) => {
-  req.xhr ?
-    ( res.status(500).send({ error: 'Something failed!' }) )
-    :
-    ( next(err) )
+  req.xhr
+    ? (res.status(500).send({ error: 'Something failed!' }))
+    : (next(err))
 })
 
 // catch-all handler

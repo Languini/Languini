@@ -2,11 +2,10 @@ module.exports = (sequelize, DataTypes) => {
   const Comment = sequelize.define('Comment', {
     content: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        len: [2, 500]
-      }
+      allowNull: false
+      // validate: {
+      //   len: [2, 500]
+      // }
     }
   }, {
     classMethods: {

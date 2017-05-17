@@ -5,7 +5,7 @@ exports.seed = (knex, Promise) => {
       content: 'Primero en entrar primero en salir',
       votes: 2,
       TranslationId: 1,
-      UserId: 6,
+      UserId: 1,
       createdAt: '08/19/2014 00:00:00',
       updatedAt: '08/19/2014 00:00:00'
     },
@@ -14,7 +14,7 @@ exports.seed = (knex, Promise) => {
       content: 'Aperçu',
       votes: 1,
       TranslationId: 2,
-      UserId: 2,
+      UserId: 1,
       createdAt: '08/19/2014 00:00:00',
       updatedAt: '08/19/2014 00:00:00'
     },
@@ -23,7 +23,7 @@ exports.seed = (knex, Promise) => {
       content: 'Derin seribaşı',
       votes: 0,
       TranslationId: 3,
-      UserId: 5,
+      UserId: 1,
       createdAt: '08/19/2014 00:00:00',
       updatedAt: '08/19/2014 00:00:00'
     },
@@ -32,7 +32,7 @@ exports.seed = (knex, Promise) => {
       content: 'Calçado',
       votes: -1,
       TranslationId: 4,
-      UserId: 4,
+      UserId: 1,
       createdAt: '08/19/2014 00:00:00',
       updatedAt: '08/19/2014 00:00:00'
     },
@@ -41,7 +41,7 @@ exports.seed = (knex, Promise) => {
       content: 'Kunststück',
       votes: 5,
       TranslationId: 5,
-      UserId: 3,
+      UserId: 1,
       createdAt: '08/19/2014 00:00:00',
       updatedAt: '08/19/2014 00:00:00'
     }
