@@ -2,19 +2,17 @@ module.exports = (sequelize, DataTypes) => {
   const Answer = sequelize.define('Answer', {
     content: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        len: [2, 500]
-      }
+      allowNull: false
+      // validate: {
+      //   len: [2, 500]
+      // }
     },
     votes: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      unique: true,
-      validate: {
-        isInt: true
-      }
+      allowNull: false
+      // validate: {
+      //   isInt: true
+      // }
     }
   }, {
     classMethods: {

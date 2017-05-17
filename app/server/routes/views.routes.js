@@ -1,5 +1,5 @@
 const express = require('express'),
-  viewsController = require('../controllers/views.controller'),
+  viewsController = require('../controller/views.controller'),
   router = express.Router()
 
 module.exports = router

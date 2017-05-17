@@ -6,7 +6,7 @@
 
 0. Pull changes from the dev branch into your current branch: `git pull origin dev`
 
-1. Make sure you're credentials are present in `app/server/knex/knexfile.js` and `app/server/configconfig.json`
+1. Make sure you're credentials are present in `app/server/config/config.json`
 
 2. Run `yarn`
 
@@ -39,9 +39,18 @@ _You should see a new button with the label “Compare & Pull Request”). Click
 
 ## Local Development
 
-0. In `app/server/knex`, run `knex seed:run` to seed your database
+0. Add the `{force:true}` option to the db.sync() method in `/bin/www` to refresh your DB, run the server, kill the server, and replace it with `{force:true}` or simply remove it.
 
-1. Run `DEBUG=express:* <insert_npm_script_key_here>` to run app in debug mode
+1. In `app/server`, run the following to seed your local db:
+
+```
+sequelize db:seed --seed users
+sequelize db:seed --seed translations
+sequelize db:seed --seed answers
+sequelize db:seed --seed comments
+```
+
+2. Run `DEBUG=express:* <insert_npm_script_key_here>` to run app in debug mode
 
 ## Testing
 

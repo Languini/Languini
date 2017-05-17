@@ -2,17 +2,17 @@ module.exports = (sequelize, DataTypes) => {
   const Translation = sequelize.define('Translation', {
     request: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [2, 200]
-      }
+      allowNull: false
+      // validate: {
+      //   len: [2, 200]
+      // }
     },
-    content: {
+    context: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [2, 500]
-      }
+      allowNull: false
+      // validate: {
+      //   len: [2, 500]
+      // }
     },
     language: {
       type: DataTypes.STRING,
