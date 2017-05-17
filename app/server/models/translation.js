@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        isIn: [
+        isIn: [[
           'Afrikaans',
           'Albanian',
           'Amharic',
@@ -123,7 +123,7 @@ module.exports = (sequelize, DataTypes) => {
           'Yiddish',
           'Yoruba',
           'Zulu'
-        ]
+        ]]
       }
     }
   },
