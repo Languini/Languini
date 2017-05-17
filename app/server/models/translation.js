@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
     request: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
       validate: {
         len: [2, 200]
       }
@@ -11,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
     content: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
       validate: {
         len: [2, 500]
       }
@@ -19,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     language: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
       validate: {
         isIn: [
           'Afrikaans',

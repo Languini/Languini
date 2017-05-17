@@ -3,10 +3,11 @@ module.exports = {
   listenForSubmission: () => {
     $('#submit-post').on('click', (event) => {
       event.preventDefault()
-      var request = $('#request').val().trim()
-      var context = $('#context').val().trim()
-      var language = $('#languages option:selected').text()
+      var $request = $('#request').val().trim()
+      var $context = $('#context').val().trim()
+      var $language = $('#languages option:selected').text()
       if (request.length && context.length) {
+        console.log($language)
         var translation = {
           request: request,
           content: context,
