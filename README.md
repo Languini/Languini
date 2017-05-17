@@ -4,11 +4,13 @@
 
 ## Contributing
 
-0. Pull changes from Master: `git pull origin master`
+0. Pull changes from the dev branch into your current branch: `git pull origin dev`
 
-1. Create branch: `git branch *branch_name*`
+0.5 Run `yarn`
 
-2. Checkout branch: `git checkout *branch*`
+1. (optional) Create branch: `git branch *branch_name*`
+
+2. (optional) Checkout branch: `git checkout *branch*`
 
 3. Make changes...
 
