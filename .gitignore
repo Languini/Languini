@@ -69,3 +69,6 @@ config
 
 # knexfile
 knexfile.js
+
+# bundle
+dist/
