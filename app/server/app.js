@@ -77,10 +77,25 @@ app.use('/auth', authRouter)
 app.use('/', viewRouter)
 app.use('/api', apiRouter)
 
+// error handlers
 
 // resource not found request handler
 app.use((req, res) => {
   res.status(404).send('404')
+})
+
+// 'something failed' handler
+app.use((err, req, res, next) => {
+  req.xhr ?
+    ( res.status(500).send({ error: 'Something failed!' }) )
+    :
+    ( next(err) )
+})
+
+// catch-all handler
+app.use((err, req, res, next) => {
+  res.status(500)
+  res.render('error', { error: err })
 })
 
 // export our server for consumption by bin/www
