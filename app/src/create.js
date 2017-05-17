@@ -5,12 +5,13 @@ module.exports = {
       event.preventDefault()
       var request = $('#request').val().trim()
       var context = $('#context').val().trim()
-      var language = $('#languages option:selected').text();
+      var language = $('#languages option:selected').text()
       if (request.length && context.length) {
         var translation = {
           request: request,
-          context: context,
-          language: language
+          content: context,
+          language: language,
+          UserId: 3
         }
         $.post('/api/create', translation, (result) => {
           console.log(result)
