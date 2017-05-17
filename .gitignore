@@ -64,5 +64,8 @@ Procfile
 # sequelize config
 config
 
-# webstorm 
+# webstorm
 .idea/
+
+# knexfile
+knexfile.js
