@@ -5,7 +5,8 @@ module.exports = {
       event.preventDefault()
       const translation = {
         request: $('#request').val().trim(),
-        context: $('#context').val().trim()
+        context: $('#context').val().trim(),
+        UserId: 3
       }
       $.post('/api/create', translation, () => {
         console.log('Submitted a new post')
