@@ -12,3 +12,4 @@ const corsOpts = {
 module.exports = router
     .get('/translations', cors(corsOpts), apiController.someFunction)
     .post('/translations', apiController.createTrans)
+    .post('/vote', apiController.voteComment)

@@ -1,7 +1,7 @@
 const fetch = require('node-fetch')
 const withQuery = require('with-query')
 
-const { Translation, Answer } = require('../models')
+const { Translation, Answer, Votes } = require('../models')
 
 function languageCode (language) {
   return [
@@ -224,4 +224,14 @@ exports.createTrans = async (req, res) => {
     UserId: 1
   })
   res.redirect('/create')
+}
+
+exports.voteComment = async (req, res) => {
+  const vote = {
+    UserId: req.user.dataValues.id,
+    upvote: req.body.upvote,
+    downvote: req.body.downvote,
+    AnswerId: req.body.AnswerId
+  }
+  res.json(await Votes.upsert(vote))
 }
