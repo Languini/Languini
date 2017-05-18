@@ -11,8 +11,7 @@ module.exports = {
         UserId: 3
       }
       if (translation.request.length && translation.context.length) {
-        $.post('/api/create', translation, (result) => {
-          console.log(`result: ${result}`)
+        $.post('/api/translations', translation, result => {
         })
       } else {
         alert('Please provide a request and context')
