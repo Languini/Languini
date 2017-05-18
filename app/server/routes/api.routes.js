@@ -10,5 +10,5 @@ const corsOpts = {
 }
 
 module.exports = router
-    .get('/friends', cors(corsOpts), apiController.someFunction)
-    .post('/create', apiController.createPost)
+    .get('/translations', cors(corsOpts), apiController.someFunction)
+    .post('/translations', apiController.createTrans)

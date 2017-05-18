@@ -206,7 +206,7 @@ function languageCode(language) {
 
 exports.someFunction = (req, res) => {}
 
-exports.createPost = async (req, res) => {
+exports.createTrans = async (req, res) => {
   const resource = await Translation.create(req.body)
   const transRaw = await fetch(withQuery(
     'http://www.transltr.org/api/translate',
