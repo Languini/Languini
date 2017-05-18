@@ -6,13 +6,6 @@ module.exports = (sequelize, DataTypes) => {
       // validate: {
       //   len: [2, 500]
       // }
-    },
-    votes: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-      // validate: {
-      //   isInt: true
-      // }
     }
   }, {
     classMethods: {
@@ -20,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         Answer.belongsTo(models.Translation)
         Answer.belongsTo(models.User)
         Answer.hasMany(models.Comment)
+        Answer.hasMany(models.Votes)
       }
     }
   })
