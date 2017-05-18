@@ -1,8 +1,8 @@
 require('dotenv').config()
 
-const passport = require('passport'),
-  FacebookStrategy = require('passport-facebook').Strategy,
-  { User } = require('../models')
+const passport = require('passport')
+const FacebookStrategy = require('passport-facebook').Strategy
+const { User } = require('../models')
 
 module.exports = passport => {
   const facebookOptions = {
