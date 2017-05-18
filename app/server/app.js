@@ -1,25 +1,26 @@
-const express = require('express'),
-  helmet = require('helmet'),
-  compression = require('compression'),
-  validator = require('express-validator'),
-  session = require('express-session'),
-  passport = require('passport'),
-  crypto = require('crypto'),
-  randToken = require('rand-token').generator({
-    chars: 'A-Z',
-    source: crypto.randomBytes
-  }),
-  bodyParser = require('body-parser'),
-  path = require('path'),
-  uuidV4 = require('uuid/v4'),
-  fs = require('fs'),
-  rfs = require('rotating-file-stream'),
-  morgan = require('morgan'),
-  pug = require('pug'),
-  app = express(),
-  authRouter = require('./routes/auth.routes'),
-  viewRouter = require('./routes/views.routes'),
-  apiRouter = require('./routes/api.routes')
+const express = require('express')
+const helmet = require('helmet')
+const compression = require('compression')
+const validator = require('express-validator')
+const session = require('express-session')
+const passport = require('passport')
+const crypto = require('crypto')
+const randToken = require('rand-token').generator({
+  chars: 'A-Z',
+  source: crypto.randomBytes
+})
+const bodyParser = require('body-parser')
+const path = require('path')
+const uuidV4 = require('uuid/v4')
+const fs = require('fs')
+const rfs = require('rotating-file-stream')
+const morgan = require('morgan')
+const pug = require('pug')
+const authRouter = require('./routes/auth.routes')
+const viewRouter = require('./routes/views.routes')
+const apiRouter = require('./routes/api.routes')
+
+const app = express()
 
 app.use(helmet())
 app.use(compression())

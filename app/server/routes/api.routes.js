@@ -1,7 +1,8 @@
-const express = require('express'),
-  cors = require('cors'),
-  router = express.Router(),
-  apiController = require('../controller/api.controller')
+const express = require('express')
+const cors = require('cors')
+const apiController = require('../controller/api.controller')
+
+const router = express.Router()
 
 const corsOpts = {
   origin: 'http://languini.herokuapp.com/',

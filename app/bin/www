@@ -1,5 +1,5 @@
-const server = require('../server/app'),
-  db = require('../server/models')
+const server = require('../server/app')
+const db = require('../server/models')
 
 server.set('port', process.env.PORT || 5000)
 

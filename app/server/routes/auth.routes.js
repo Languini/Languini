@@ -1,6 +1,7 @@
-const express = require('express'),
-  router = express.Router(),
-  authController = require('../controller/auth.controller')
+const express = require('express')
+
+const authController = require('../controller/auth.controller')
+const router = express.Router()
 
 module.exports = (app, passport) => {
   router
