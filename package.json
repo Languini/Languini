@@ -10,7 +10,8 @@
         "nodemon": "nodemon app/bin/www",
         "test": "mocha app/server/test",
         "cover": "istanbul cover -x *.test.js _mocha -- -R spec app/server/test",
-        "coveralls": "yarn cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+        "coveralls": "cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+        "coverage-check": "istanbul check-coverage --statements 0 --branches 0 --functions 0 --lines 0"
     },
     "main": "app/src/index.js",
     "repository": {
@@ -93,7 +94,7 @@
     },
     "config": {
       "ghooks": {
-        "pre-commit": "yarn test"
+        "pre-commit": "yarn test && yarn coverage-check"
       }
     }
 }
