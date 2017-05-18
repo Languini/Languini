@@ -1,18 +1,20 @@
 const chai = require('chai')
 const chaiHTTP = require('chai-http')
 
-const should = chai.should()
+const assert = chai.assert
 const server = require('../app')
 const { Translation } = require('../models')
 
 chai.use(chaiHTTP)
 
 describe('Translations', () => {
-  beforeEach((done) => {
-    Translation.destroy({
-      where: ''
-    }, err => {
-      done()
+  beforeEach(async () => {
+    await Translation.destroy({
+      where: {
+        id: {
+          $gte: 1
+        }
+      }
     })
   })
   describe('/GET Translations', () => {
@@ -20,11 +22,27 @@ describe('Translations', () => {
       chai.request(server)
         .get('/api/translation')
         .end((err, res) => {
-          res.should.have.status(200)
-          res.body.should.be.a('array')
-          res.body.length.should.be.eql(0)
+          assert.isObject(res.body)
+          assert(Object.keys(res.body).length === 0)
           done()
         })
     })
   })
+  describe('/POST Translation', () => {
+      it('it should not POST a translation without every field', done => {
+        const translation = {
+            request: "The Lord of the Rings",
+            context: "Big fan",
+            language: 'ar'
+        }
+        chai.request(server)
+          .post('/translations')
+          .send(translation)
+          .end((err, res) => {
+            assert.isObject(res.body)
+            assert(Object.keys(res.body).length === 0)
+            done();
+          });
+      });
+  });
 })
