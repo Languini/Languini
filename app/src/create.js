@@ -2,8 +2,8 @@ require('whatwg-fetch')
 
 module.exports = {
   listenForSubmission: () => {
+    event.preventDefault()
     $('#submit-post').on('click', (event) => {
-      event.preventDefault()
       const translation = {
         request: $('#request').val().trim(),
         context: $('#context').val().trim(),

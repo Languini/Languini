@@ -29,20 +29,20 @@ describe('Translations', () => {
     })
   })
   describe('/POST Translation', () => {
-      it('it should not POST a translation without every field', done => {
-        const translation = {
-            request: "The Lord of the Rings",
-            context: "Big fan",
-            language: 'ar'
-        }
-        chai.request(server)
+    it('it should not POST a translation without every field', done => {
+      const translation = {
+        request: 'The Lord of the Rings',
+        context: 'Big fan',
+        language: 'ar'
+      }
+      chai.request(server)
           .post('/translations')
           .send(translation)
           .end((err, res) => {
             assert.isObject(res.body)
             assert(Object.keys(res.body).length === 0)
-            done();
-          });
-      });
-  });
+            done()
+          })
+    })
+  })
 })
