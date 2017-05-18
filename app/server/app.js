@@ -16,7 +16,6 @@ const fs = require('fs')
 const rfs = require('rotating-file-stream')
 const morgan = require('morgan')
 const pug = require('pug')
-const authRouter = require('./routes/auth.routes')
 const viewRouter = require('./routes/views.routes')
 const apiRouter = require('./routes/api.routes')
 
@@ -74,7 +73,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // register routes
-app.use('/auth', authRouter)
+require('./routes/auth.routes')(app, passport)
 app.use('/', viewRouter)
 app.use('/api', apiRouter)
 
@@ -86,17 +85,18 @@ app.use((req, res) => {
 })
 
 // 'something failed' handler
-app.use((err, req, res, next) => {
-  req.xhr
-    ? (res.status(500).send({ error: 'Something failed!' }))
-    : (next(err))
-})
-
-// catch-all handler
-app.use((err, req, res, next) => {
-  res.status(500)
-  res.render('error', { error: err })
-})
+// app.use((err, req, res, next) => {
+//   req.xhr
+//     ? (res.status(500).send({ error: 'Something failed!' }))
+//     : (next(err))
+// })
+//
+// // catch-all handler
+// app.use((err, req, res, next) => {
+//   res.status(500)
+//   // res.render('error', { error: err })
+//   res.send(err)
+// })
 
 // export our server for consumption by bin/www
 module.exports = app

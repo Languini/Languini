@@ -3,203 +3,203 @@ const withQuery = require('with-query')
 
 const { Translation, Answer } = require('../models')
 
-function languageCode(language) {
+function languageCode (language) {
   return [
     {
-      "languageCode": "ar",
-      "languageName": "Arabic"
+      'languageCode': 'ar',
+      'languageName': 'Arabic'
     },
     {
-      "languageCode": "bs",
-      "languageName": "Bosnian"
+      'languageCode': 'bs',
+      'languageName': 'Bosnian'
     },
     {
-      "languageCode": "bg",
-      "languageName": "Bulgarian"
+      'languageCode': 'bg',
+      'languageName': 'Bulgarian'
     },
     {
-      "languageCode": "ca",
-      "languageName": "Catalan"
+      'languageCode': 'ca',
+      'languageName': 'Catalan'
     },
     {
-      "languageCode": "zh-CHS",
-      "languageName": "Chinese Simplified"
+      'languageCode': 'zh-CHS',
+      'languageName': 'Chinese Simplified'
     },
     {
-      "languageCode": "zh-CHT",
-      "languageName": "Chinese Traditional"
+      'languageCode': 'zh-CHT',
+      'languageName': 'Chinese Traditional'
     },
     {
-      "languageCode": "hr",
-      "languageName": "Croatian"
+      'languageCode': 'hr',
+      'languageName': 'Croatian'
     },
     {
-      "languageCode": "cs",
-      "languageName": "Czech"
+      'languageCode': 'cs',
+      'languageName': 'Czech'
     },
     {
-      "languageCode": "da",
-      "languageName": "Danish"
+      'languageCode': 'da',
+      'languageName': 'Danish'
     },
     {
-      "languageCode": "nl",
-      "languageName": "Dutch"
+      'languageCode': 'nl',
+      'languageName': 'Dutch'
     },
     {
-      "languageCode": "en",
-      "languageName": "English"
+      'languageCode': 'en',
+      'languageName': 'English'
     },
     {
-      "languageCode": "et",
-      "languageName": "Estonian"
+      'languageCode': 'et',
+      'languageName': 'Estonian'
     },
     {
-      "languageCode": "fi",
-      "languageName": "Finnish"
+      'languageCode': 'fi',
+      'languageName': 'Finnish'
     },
     {
-      "languageCode": "fr",
-      "languageName": "French"
+      'languageCode': 'fr',
+      'languageName': 'French'
     },
     {
-      "languageCode": "de",
-      "languageName": "German"
+      'languageCode': 'de',
+      'languageName': 'German'
     },
     {
-      "languageCode": "el",
-      "languageName": "Greek"
+      'languageCode': 'el',
+      'languageName': 'Greek'
     },
     {
-      "languageCode": "ht",
-      "languageName": "Haitian Creole"
+      'languageCode': 'ht',
+      'languageName': 'Haitian Creole'
     },
     {
-      "languageCode": "he",
-      "languageName": "Hebrew"
+      'languageCode': 'he',
+      'languageName': 'Hebrew'
     },
     {
-      "languageCode": "hi",
-      "languageName": "Hindi"
+      'languageCode': 'hi',
+      'languageName': 'Hindi'
     },
     {
-      "languageCode": "mww",
-      "languageName": "Hmong Daw"
+      'languageCode': 'mww',
+      'languageName': 'Hmong Daw'
     },
     {
-      "languageCode": "hu",
-      "languageName": "Hungarian"
+      'languageCode': 'hu',
+      'languageName': 'Hungarian'
     },
     {
-      "languageCode": "id",
-      "languageName": "Indonesian"
+      'languageCode': 'id',
+      'languageName': 'Indonesian'
     },
     {
-      "languageCode": "it",
-      "languageName": "Italian"
+      'languageCode': 'it',
+      'languageName': 'Italian'
     },
     {
-      "languageCode": "ja",
-      "languageName": "Japanese"
+      'languageCode': 'ja',
+      'languageName': 'Japanese'
     },
     {
-      "languageCode": "sw",
-      "languageName": "Kiswahili"
+      'languageCode': 'sw',
+      'languageName': 'Kiswahili'
     },
     {
-      "languageCode": "ko",
-      "languageName": "Korean"
+      'languageCode': 'ko',
+      'languageName': 'Korean'
     },
     {
-      "languageCode": "lv",
-      "languageName": "Latvian"
+      'languageCode': 'lv',
+      'languageName': 'Latvian'
     },
     {
-      "languageCode": "lt",
-      "languageName": "Lithuanian"
+      'languageCode': 'lt',
+      'languageName': 'Lithuanian'
     },
     {
-      "languageCode": "ms",
-      "languageName": "Malay"
+      'languageCode': 'ms',
+      'languageName': 'Malay'
     },
     {
-      "languageCode": "mt",
-      "languageName": "Maltese"
+      'languageCode': 'mt',
+      'languageName': 'Maltese'
     },
     {
-      "languageCode": "no",
-      "languageName": "Norwegian"
+      'languageCode': 'no',
+      'languageName': 'Norwegian'
     },
     {
-      "languageCode": "fa",
-      "languageName": "Persian"
+      'languageCode': 'fa',
+      'languageName': 'Persian'
     },
     {
-      "languageCode": "pl",
-      "languageName": "Polish"
+      'languageCode': 'pl',
+      'languageName': 'Polish'
     },
     {
-      "languageCode": "pt",
-      "languageName": "Portuguese"
+      'languageCode': 'pt',
+      'languageName': 'Portuguese'
     },
     {
-      "languageCode": "ro",
-      "languageName": "Romanian"
+      'languageCode': 'ro',
+      'languageName': 'Romanian'
     },
     {
-      "languageCode": "ru",
-      "languageName": "Russian"
+      'languageCode': 'ru',
+      'languageName': 'Russian'
     },
     {
-      "languageCode": "sr-Cyrl",
-      "languageName": "Serbian (Cyrillic)"
+      'languageCode': 'sr-Cyrl',
+      'languageName': 'Serbian (Cyrillic)'
     },
     {
-      "languageCode": "sr-Latn",
-      "languageName": "Serbian (Latin)"
+      'languageCode': 'sr-Latn',
+      'languageName': 'Serbian (Latin)'
     },
     {
-      "languageCode": "sk",
-      "languageName": "Slovak"
+      'languageCode': 'sk',
+      'languageName': 'Slovak'
     },
     {
-      "languageCode": "sl",
-      "languageName": "Slovenian"
+      'languageCode': 'sl',
+      'languageName': 'Slovenian'
     },
     {
-      "languageCode": "es",
-      "languageName": "Spanish"
+      'languageCode': 'es',
+      'languageName': 'Spanish'
     },
     {
-      "languageCode": "sv",
-      "languageName": "Swedish"
+      'languageCode': 'sv',
+      'languageName': 'Swedish'
     },
     {
-      "languageCode": "th",
-      "languageName": "Thai"
+      'languageCode': 'th',
+      'languageName': 'Thai'
     },
     {
-      "languageCode": "tr",
-      "languageName": "Turkish"
+      'languageCode': 'tr',
+      'languageName': 'Turkish'
     },
     {
-      "languageCode": "uk",
-      "languageName": "Ukrainian"
+      'languageCode': 'uk',
+      'languageName': 'Ukrainian'
     },
     {
-      "languageCode": "ur",
-      "languageName": "Urdu"
+      'languageCode': 'ur',
+      'languageName': 'Urdu'
     },
     {
-      "languageCode": "vi",
-      "languageName": "Vietnamese"
+      'languageCode': 'vi',
+      'languageName': 'Vietnamese'
     },
     {
-      "languageCode": "cy",
-      "languageName": "Welsh"
+      'languageCode': 'cy',
+      'languageName': 'Welsh'
     },
     {
-      "languageCode": "yua",
-      "languageName": "Yucatec Maya"
+      'languageCode': 'yua',
+      'languageName': 'Yucatec Maya'
     }
   ].filter(pair => pair.languageName === language)[0].languageCode
 }
@@ -221,7 +221,7 @@ exports.createTrans = async (req, res) => {
     content: trans,
     votes: 0,
     TranslationId: resource.id,
-    UserId: 1,
+    UserId: 1
   })
   res.redirect('/create')
 }
