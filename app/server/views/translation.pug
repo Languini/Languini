@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  section(class="mw8 center")
+    h4.relative.bottom--2.dib.pr2.bg-white.serif Translation Request for #{translation.language}
+    article.pt4.bt.b--black-10.ph3.ph0-l
+      div.flex.flex-column.flex-row-ns
+          div.w-100.w-80-ns.pr3-ns.order-1.order-1-ns
+              h1.f3.mt0.lh-title #{translation.request}
+              p.f5.f4-l.lh-copy #{translation.context}
+              a(title="Post Answer" href="/post-answer/").f6.fw6.hover-blue.link.ba.b--blue-20.blue.ph3.ph3-ns.pv2.pv2-ns.br1.grow.no-underline.dib.fr Post Answer
+          div.pl3-ns.order-2.order-2-ns.mb4.mb0-ns.w-100.w-20-ns
+              img(src=translation.User.photo class="br-100 h3 w3 dib" alt="avatar")
+              p.f6.lh-copy.gray.mv0 By
+                  span  #{translation.User.name}
+      div.fr.lh-copy.mv0.ph4.pv2.ph0-l
+      h4.relative.bottom--2.dib.pr3.bg-white Answers
+      article.pv4.bt.bb.b--black-10.ph3.ph0-l
+        each answer in translation.Answers
+          div.flex.flex-column.flex-row-ns.shadow-1
+              div.w-6.w-5-ns.pr3-ns.order-3.order-1-ns
+                  div.gray num+
+                  div.f3.moon-gray
+                      i(aria-hidden="true").fa.fa-chevron-up
+                  div.gray.f6 Vote
+                  div.f3.moon-gray
+                      i(aria-hidden="true").fa.fa-chevron-down
+                  div.gray num-
+              div.w-100.w-75-ns.pr3-ns.order-1.order-2-ns
+                  h1.f3.mt0.lh-title #{answer.content}
+                  a(title="Post comment" href="/post-comment/").f6.fw6.hover-blue.link.ba.b--blue-20.blue.ph3.ph3-ns.pv2.pv2-ns.br1.grow.no-underline.fr.dib Post Comment
+              div.pl3-ns.order-2.order-3-ns.mb4.mb0-ns.w-100.w-20-ns
+                  img(src="http://www.tech-recipes.com/wp-content/uploads/2013/07/google-translate-logo.png" alt="Google Translate").db
+                  p.f6.lh-copy.gray.mv0 By
+                      span Google Translate
+                  time.f6.db.gray Nov. 21, 2016
+
+  include includes/footer.pug

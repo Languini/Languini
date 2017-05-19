@@ -1,6 +1,6 @@
 const winston = require('winston')
 
-const { User, Translation } = require('../models')
+const { User, Translation, Votes, Comment, Answer } = require('../models')
 
 const logger = new (winston.Logger)({
   transports: [
@@ -20,8 +20,30 @@ exports.create = (req, res) => {
   res.render('create')
 }
 
-exports.translate = (req, res) => {
-  res.render('layout')
+exports.translate = async (req, res) => {
+  let translation
+  let user
+  try {
+    translation = await Translation.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [
+        User,
+        { model: Answer, include: [
+          User,
+          Comment,
+          { model: Votes, include: [ User ] }
+        ]},
+      ]
+    })
+  } catch (e) {
+    translation = "Error getting translation"
+  }
+  console.log(JSON.parse(JSON.stringify(translation.dataValues)))
+  res.render('translation', {
+    translation: translation.dataValues
+  })
 }
 
 // // validation example with the 'express-validator package'

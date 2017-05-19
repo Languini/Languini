@@ -1,8 +1,8 @@
 extends layout
 
 block content
-  include includes/hero.pug
-  
+  include includes/nav.pug
+
   case user
     when undefined
       h1(class="ph6 f2 lh-copy") You are not signed in! Sign in via 'auth/facebook'
