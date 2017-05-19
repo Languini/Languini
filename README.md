@@ -48,6 +48,7 @@ sequelize db:seed --seed users
 sequelize db:seed --seed translations
 sequelize db:seed --seed answers
 sequelize db:seed --seed comments
+sequelize db:seed --seed votes
 ```
 
 2. Run `DEBUG=express:* <insert_npm_script_key_here>` to run app in debug mode

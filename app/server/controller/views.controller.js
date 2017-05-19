@@ -17,8 +17,7 @@ exports.home = (req, res) => {
 }
 
 exports.create = (req, res) => {
-  console.log(`user create: ${JSON.stringify(req.user)}`)
-  res.render('create')
+  res.render('create', { user: req.user && req.user.dataValues })
 }
 
 exports.translate = (req, res) => {
