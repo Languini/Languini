@@ -41,9 +41,7 @@ exports.translate = async (req, res) => {
     translation = "Error getting translation"
   }
   console.log(JSON.parse(JSON.stringify(translation.dataValues)))
-  res.render('translation', {
-    translation: translation.dataValues
-  })
+  res.render('translation', translation.dataValues)
 }
 
 // // validation example with the 'express-validator package'
