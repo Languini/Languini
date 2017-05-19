@@ -21,7 +21,7 @@ exports.create = (req, res) => {
 }
 
 exports.translate = (req, res) => {
-  //
+  res.render('layout')
 }
 
 // // validation example with the 'express-validator package'

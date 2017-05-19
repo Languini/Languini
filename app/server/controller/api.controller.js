@@ -237,6 +237,7 @@ exports.getTrans = async (req, res) => {
 }
 
 exports.createTrans = async (req, res) => {
+  req.body.UserId = req.user.id;
   const transReq = await Translation.create(req.body)
   const translated = await fetch(withQuery(
     'http://www.transltr.org/api/translate',
@@ -249,7 +250,6 @@ exports.createTrans = async (req, res) => {
   const trans = (await translated.json()).translationText
   const ans = await Answer.create({
     content: trans,
-    votes: 0,
     TranslationId: transReq.id,
     UserId: 1
   })
