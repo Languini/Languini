@@ -29,12 +29,13 @@ module.exports = passport => {
 
   const dehydrate = (user, cb) => cb(null, user.id)
 
-  const rehydrate = (id, cb) => {
-    User
-      .findById(id)
-      .then(user => {
-        return cb(null, user)
-      })
+  const rehydrate = async (id, cb) => {
+    const user = await User.findById(id)
+    const sesh = {
+      id: user.id,
+      photo: user.photo
+    }
+    cb(null, sesh)
   }
 
   passport.use(new FacebookStrategy(
