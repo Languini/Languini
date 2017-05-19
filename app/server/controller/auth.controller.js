@@ -1,8 +1,8 @@
 exports.loggedIn = (req, res) => {
-  res.redirect('/')
+  res.redirect(req.session.redirectTo)
 }
 
 exports.logout = (req, res) => {
   req.logout()
-  res.redirect('/')
+  res.redirect(req.session.redirectTo)
 }

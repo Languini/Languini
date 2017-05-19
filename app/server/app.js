@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const helmet = require('helmet')
 const compression = require('compression')
 const validator = require('express-validator')
@@ -20,6 +21,13 @@ const viewRouter = require('./routes/views.routes')
 const apiRouter = require('./routes/api.routes')
 
 const app = express()
+
+const corsOpts = {
+  origin: 'http://localhost:5000/',
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOpts))
 
 app.use(helmet())
 app.use(compression())

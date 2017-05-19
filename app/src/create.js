@@ -1,5 +1,3 @@
-require('whatwg-fetch')
-
 module.exports = {
   listenForSubmission: () => {
     $('#submit-post').on('click', (event) => {
