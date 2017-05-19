@@ -209,7 +209,7 @@ exports.getTrans = async (req, res) => {
   let trans
   if (req.query.uid) {
     try {
-      trans = await Translation.findall({
+      trans = await Translation.findAll({
         where: {
           UserId: req.query.uid
         },
@@ -301,7 +301,7 @@ exports.getAns = async (req, res) => {
       })
       return res.status(200).json(ans)
     } catch (e) {
-      return res.status(500).json('Error fetching resource')
+      return res.status(404).json(ans)
     }
   }
 }
