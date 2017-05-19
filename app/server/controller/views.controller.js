@@ -17,11 +17,11 @@ exports.home = (req, res) => {
 }
 
 exports.create = (req, res) => {
-  res.render('create', { user: req.user && req.user.dataValues })
+  res.render('create')
 }
 
 exports.translate = (req, res) => {
-  //
+  res.render('layout')
 }
 
 // // validation example with the 'express-validator package'

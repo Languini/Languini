@@ -1,7 +1,7 @@
 const fetch = require('node-fetch')
 const withQuery = require('with-query')
 
-const { Translation, Answer, Comment } = require('../models')
+const { Translation, Answer, Comment, Votes } = require('../models')
 
 function languageCode (language) {
   return [
@@ -237,6 +237,7 @@ exports.getTrans = async (req, res) => {
 }
 
 exports.createTrans = async (req, res) => {
+  req.body.UserId = req.user.id;
   const transReq = await Translation.create(req.body)
   const translated = await fetch(withQuery(
     'http://www.transltr.org/api/translate',
@@ -249,7 +250,6 @@ exports.createTrans = async (req, res) => {
   const trans = (await translated.json()).translationText
   const ans = await Answer.create({
     content: trans,
-    votes: 0,
     TranslationId: transReq.id,
     UserId: 1
   })
@@ -282,6 +282,7 @@ exports.getAns = async (req, res) => {
         where: {
           TranslationId: req.query.tid
         },
+        include: [ Votes ],
         limit: 1000
       })
       return res.status(200).json(ans)
@@ -348,5 +349,27 @@ exports.createComm = async (req, res) => {
     res.status(200).json(await Comment.create(req.body))
   } catch (e) {
     res.status(500).json('Error creating comment')
+  }
+}
+
+exports.postVote = async (req, res) => {
+  /*
+  expects the following params:
+  - UserId (will be req.user.id)
+  - upvote (based on whether up or down arrow was hit)
+  - downvote (based on whether up or down arrow was hit)
+  - AnswerId (based on ID of answer that was voted on)
+  */
+  const vote = {
+    UserId: req.user.id,
+    upvote: req.body.upvote,
+    downvote: req.body.downvote,
+    AnswerId: req.body.AnswerId
+  }
+  try {
+    res.status(json(await Votes.upsert(vote)))
+    // returns true if row did not exist
+  } catch (e) {
+    res.status(500).json("Error submitting vote")
   }
 }

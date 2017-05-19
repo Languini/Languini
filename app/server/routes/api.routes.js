@@ -16,3 +16,4 @@ module.exports = router
   .post('/answers', apiController.createAns)
   .get('/comments', apiController.getComm)
   .post('/comments', apiController.createComm)
+  .post('/vote', apiController.postVote)

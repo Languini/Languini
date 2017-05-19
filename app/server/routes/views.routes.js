@@ -6,4 +6,4 @@ const router = express.Router()
 module.exports = router
   .get('/', viewsController.home)
   .get('/create', viewsController.create)
-  .get('/translate', viewsController.translate)
+  .get('/posts/:id', viewsController.translate)
