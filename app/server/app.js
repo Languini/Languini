@@ -72,6 +72,12 @@ require('./lib/passport.init')(passport)
 app.use(passport.initialize())
 app.use(passport.session())
 
+// make user object available to every view
+app.use((req, res, next) => {
+  res.locals.user = req.user
+  next()
+})
+
 // register routes
 require('./routes/auth.routes')(app, passport)
 app.use('/', viewRouter)

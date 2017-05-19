@@ -1,5 +1,7 @@
 const winston = require('winston')
 
+const { User, Translation } = require('../models')
+
 const logger = new (winston.Logger)({
   transports: [
     new (winston.transports.Console)(),
@@ -10,8 +12,8 @@ const logger = new (winston.Logger)({
 
 // home route
 exports.home = (req, res) => {
-  // res.render('landing', { title: 'Languini!'})
-  res.send('home')
+  console.log(`user index: ${JSON.stringify(req.user)}`)
+  res.render('index')
 }
 
 exports.create = (req, res) => {
