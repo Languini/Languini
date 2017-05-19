@@ -1,17 +1,9 @@
 div(class='mb6-ns mb5')
   ul(class="list pl0 mt0 measure center mw-100 helvetica")
-    li(class="flex items-center dim lh-copy pa3 ph0-l bb b--black-10")
-      img(class="w2 h2 w3-ns h3-ns br-100" src="http://tachyons.io/img/avatar-mrmrs.jpg")
-      div(class="pl3 flex-auto")
-        span(class="f6 db black-70") Mrmrs
-        span(class="f6 db black-70") Medium Hexagon, LLC
-    li(class="flex items-center dim lh-copy pa3 ph0-l bb b--black-10")
-      img(class="w2 h2 w3-ns h3-ns br-100" src="http://tachyons.io/img/avatar-mrmrs.jpg")
-      div(class="pl3 flex-auto")
-        span(class="f6 db black-70") Mrmrs
-        span(class="f6 db black-70") Medium Hexagon, LLC
-    li(class="flex items-center dim lh-copy pa3 ph0-l bb b--black-10")
-      img(class="w2 h2 w3-ns h3-ns br-100" src="http://tachyons.io/img/avatar-mrmrs.jpg")
-      div(class="pl3 flex-auto")
-        span(class="f6 db black-70") Mrmrs
-        span(class="f6 db black-70") Medium Hexagon, LLC
+    each item in info
+      a(class='link', href='#')
+        li(class="flex items-center dim lh-copy pa3 ph0-l bb b--black-10")
+          img(class="w2 h2 w3-ns h3-ns br-100" src=item.photo)
+          div(class="pl3 flex-auto")
+            span(class="f6 db black-70 b")=item.Translations[0].request
+            span(class="f6 db black-70")=item.name

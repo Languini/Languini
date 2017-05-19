@@ -44,7 +44,7 @@ module.exports = {
       fb_id: '12345abcdefghi',
       email: 'jhunt@gmail.com',
       name: 'James Hunt',
-      photo: 'https://static.pexels.com/photos/91227/pexels-photo-91228.jpeg',
+      photo: 'https://www.dailystormer.com/wp-content/uploads/2017/01/daily-stormer_9991487.png',
       createdAt: '08/19/2014 00:00:00',
       updatedAt: '08/19/2014 00:00:00'
     }])
