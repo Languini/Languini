@@ -32,7 +32,7 @@ exports.translate = async (req, res) => {
         User,
         { model: Answer, include: [
           User,
-          Comment,
+          { model: Comment, include: [ User ] },
           { model: Votes, include: [ User ] }
         ]},
       ]

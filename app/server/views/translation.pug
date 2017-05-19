@@ -6,7 +6,7 @@ block content
     article.pt4.bt.b--black-10.ph3.ph0-l
       div.flex.flex-column.flex-row-ns
           div.w-100.w-80-ns.pr3-ns.order-1.order-1-ns
-              h1.f3.mt0.lh-title #{request}
+              h1.f3.mt0.lh-title "#{request}"
               p.f5.f4-l.lh-copy #{context}
               a(title="Post Answer" href="/post-answer/").f6.fw6.hover-blue.link.ba.b--blue-20.blue.ph3.ph3-ns.pv2.pv2-ns.br1.grow.no-underline.dib.fr Post Answer
           div.pl3-ns.order-2.order-2-ns.mb4.mb0-ns.w-100.w-20-ns
@@ -17,22 +17,43 @@ block content
       h4.relative.bottom--2.dib.pr3.bg-white Answers
       article.pv4.bt.bb.b--black-10.ph3.ph0-l
         each answer in Answers
-          div.flex.flex-column.flex-row-ns.shadow-1
-              div.w-6.w-5-ns.pr3-ns.order-3.order-1-ns
-                  div.gray num+
-                  div.f3.moon-gray
-                      i(aria-hidden="true").fa.fa-chevron-up
-                  div.gray.f6 Vote
-                  div.f3.moon-gray
-                      i(aria-hidden="true").fa.fa-chevron-down
-                  div.gray num-
-              div.w-100.w-75-ns.pr3-ns.order-1.order-2-ns
-                  h1.f3.mt0.lh-title #{answer.content}
-                  a(title="Post comment" href="/post-comment/").f6.fw6.hover-blue.link.ba.b--blue-20.blue.ph3.ph3-ns.pv2.pv2-ns.br1.grow.no-underline.fr.dib Post Comment
-              div.pl3-ns.order-2.order-3-ns.mb4.mb0-ns.w-100.w-20-ns
-                  img(src="http://www.tech-recipes.com/wp-content/uploads/2013/07/google-translate-logo.png" alt="Google Translate").db
+          <article class="pa3 pa5-ns shadow-1">
+            <h1 class="">"#{answer.content}"</h1>
+            <div class="cf">
+              <dl class="fl fn-l w-50 dib-l w-auto-l lh-title mr5-l">
+                <dd class="f6 fw4 ml0 gray mv0">Submitted By</dd>
+                <dd class="f3 fw6 ml0 gray mv0">#{answer.User.name}</dd>
+              </dl>
+              <dl class="fl fn-l w-50 dib-l w-auto-l lh-title mr5-l">
+                <dd class="f6 fw4 ml0 gray mv0">Upvotes</dd>
+                dd(class="f3 fw6 ml0 gray mv0")
+                  = answer.Votes.length && answer.Votes.filter(function(val){ return val.upvote }).length
+              </dl>
+              <dl class="fl fn-l w-50 dib-l w-auto-l lh-title mr5-l">
+                <dd class="f6 fw4 ml0 gray mv0">Downvotes</dd>
+                dd(class="f3 fw6 ml0 gray mv0")
+                  = answer.Votes.length && answer.Votes.filter(function(val){ return val.downvote }).length
+              </dl>
+            </div>
+            br
+            <article class="pa3 pa5 shadow-3">
+              h3(class="gray") Comments
+              hr
+              each comment in answer.Comments
+                p(class="measure lh-copy") #{comment.content}
                   p.f6.lh-copy.gray.mv0 By
-                      span Google Translate
-                  time.f6.db.gray Nov. 21, 2016
+                      span  #{comment.User.name}
+                hr
+              if user
+                <form action="sign-up_submit" method="get" accept-charset="utf-8">
+                  <div>
+                    <textarea id="comment" name="comment" class="db border-box hover-black w-100 measure ba b--black-20 pa2 br2 mb2" aria-describedby="comment-desc"></textarea>
+                  </div>
+                  <div class="mt0"><input class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6" type="submit" value="Comment"></div>
+                </form>
+              else
+            </article>
+          </article>
+
 
   include includes/footer.pug
