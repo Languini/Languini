@@ -1,7 +1,7 @@
 const fetch = require('node-fetch')
 const withQuery = require('with-query')
 
-const { Translation, Answer, Votes } = require('../models')
+const { Translation, Answer, Comment, Votes } = require('../models')
 
 function languageCode (language) {
   return [
@@ -204,26 +204,151 @@ function languageCode (language) {
   ].filter(pair => pair.languageName === language)[0].languageCode
 }
 
-exports.someFunction = (req, res) => {}
+exports.getTrans = async (req, res) => {
+  // expects a query string containing the user's ID (uid)
+  let trans
+  if (req.query.uid) {
+    try {
+      trans = await Translation.findall({
+        where: {
+          UserId: req.query.uid
+        },
+        limit: 1000
+      })
+      return res.status(200).json(trans)
+    } catch (e) {
+      return res.status(500).json('Error fetching resource')
+    }
+  } else {
+    try {
+      trans = await Translation.findAll({
+        where: {
+          id: {
+            $gte: 1
+          }
+        },
+        limit: 1000
+      })
+      return res.status(200).json(trans)
+    } catch (e) {
+      return res.status(500).json('Error fetching resource')
+    }
+  }
+}
 
 exports.createTrans = async (req, res) => {
-  const resource = await Translation.create(req.body)
-  const transRaw = await fetch(withQuery(
+  const transReq = await Translation.create(req.body)
+  const translated = await fetch(withQuery(
     'http://www.transltr.org/api/translate',
     {
-      text: resource.request,
-      to: languageCode(resource.language),
+      text: transReq.request,
+      to: languageCode(transReq.language),
       from: 'en'
     }
   ))
-  const trans = (await transRaw.json()).translationText
-  await Answer.create({
+  const trans = (await translated.json()).translationText
+  const ans = await Answer.create({
     content: trans,
     votes: 0,
-    TranslationId: resource.id,
+    TranslationId: transReq.id,
     UserId: 1
   })
-  res.redirect('/create')
+  res.status(200).json({
+    translation_request: transReq,
+    languini_answer: ans
+  })
+}
+
+exports.createAns = async (req, res) => {
+  /*
+  expects the following params:
+  - UserId (will be req.user.id)
+  - TranslationId (from a data-id on answer or w/e)
+  - content
+  */
+  try {
+    res.status(200).json(await Answer.create(req.body))
+  } catch (e) {
+    res.status(500).json('Error creating answer')
+  }
+}
+
+exports.getAns = async (req, res) => {
+  // expects a query string containing the translation's ID (tid)
+  let ans
+  if (req.query.tid) {
+    try {
+      trans = await Answer.findAll({
+        where: {
+          TranslationId: req.query.tid
+        },
+        limit: 1000
+      })
+      return res.status(200).json(ans)
+    } catch (e) {
+      return res.status(500).json('Error fetching resource')
+    }
+  } else {
+    try {
+      trans = await Answer.findAll({
+        where: {
+          id: {
+            $gte: 1
+          }
+        },
+        limit: 1000
+      })
+      return res.status(200).json(ans)
+    } catch (e) {
+      return res.status(500).json('Error fetching resource')
+    }
+  }
+}
+
+exports.getComm = async (req, res) => {
+  // expects a query string containing the answer's id (aid)
+  let comm
+  if (req.query.aid) {
+    try {
+      comm = await Comment.findAll({
+        where: {
+          AnswerId: req.query.aid
+        },
+        limit: 1000
+      })
+      return res.status(200).json(comm)
+    } catch (e) {
+      return res.status(500).json('Error fetching comment')
+    }
+  } else {
+    try {
+      comm = await Comment.findAll({
+        where: {
+          id: {
+            $gte: 1
+          }
+        },
+        limit: 1000
+      })
+      return res.status(200).json(comm)
+    } catch (e) {
+      return res.status(500).json('Error fetching comment')
+    }
+  }
+}
+
+exports.createComm = async (req, res) => {
+  /*
+  expects the following params:
+  - UserId (will be req.user.id)
+  - AnswerId (from a data-id on comment or w/e)
+  - content
+  */
+  try {
+    res.status(200).json(await Comment.create(req.body))
+  } catch (e) {
+    res.status(500).json('Error creating comment')
+  }
 }
 
 exports.voteComment = async (req, res) => {
