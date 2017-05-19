@@ -227,11 +227,11 @@ exports.createTrans = async (req, res) => {
 }
 
 exports.voteComment = async (req, res) => {
-  const vote = {
-    UserId: req.user.dataValues.id,
-    upvote: req.body.upvote,
-    downvote: req.body.downvote,
-    AnswerId: req.body.AnswerId
-  }
-  res.json(await Votes.upsert(vote))
+  // const vote = {
+  //   UserId: req.body.User,
+  //   upvote: req.body.upvote,
+  //   downvote: req.body.downvote,
+  //   AnswerId: req.body.AnswerId
+  // }
+  res.json(await Votes.upsert(req.body))
 }
