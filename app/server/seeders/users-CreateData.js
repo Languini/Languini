@@ -47,7 +47,16 @@ module.exports = {
       photo: 'https://www.dailystormer.com/wp-content/uploads/2017/01/daily-stormer_9991487.png',
       createdAt: '08/19/2014 00:00:00',
       updatedAt: '08/19/2014 00:00:00'
-    }])
+    },
+    {
+      fb_id: '12assalfdjjsadjfjlasf',
+      email: 'michaelb@gmail.com',
+      name: 'Michael Bethencourt',
+      photo: 'https://www.gravatar.com/avatar/19893aaa13a1a3e1436fbab7da5642a5?s=180&d=identicon',
+      createdAt: '08/19/2014 00:00:00',
+      updatedAt: '08/19/2014 00:00:00'
+    }
+  ])
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete('Users')

@@ -13,9 +13,9 @@ block content
                 div
                   textarea(id="answer-box" name="comment" class="db border-box hover-black w-100 measure ba b--black-20 pa2 br2 mb2" aria-describedby="comment-desc")
                 div.mt0
-                  input(id="submit-answer" class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6" type="button" value="Answer")
+                  input(id="submit-answer" class="b ph3 mt2 pv2 input-reset ba b--blue bg-transparent grow pointer f6 blue" type="button" value="Answer")
               else
-                a(title="Post Answer" id='submit-answer' href="/auth/facebook").f6.fw6.hover-blue.link.ba.b--blue-20.blue.ph3.ph3-ns.pv2.pv2-ns.br1.grow.no-underline.dib.fr Post Answer
+                a(title="Post Answer" href="/auth/facebook").auth-button.f6.fw6.hover-blue.link.ba.b--blue-20.blue.ph3.ph3-ns.pv2.pv2-ns.br1.grow.no-underline.dib.fr Post Answer
           div.pl3-ns.order-2.order-2-ns.mb2.mb0-ns.w-100.w-20-ns
               img(src=User.photo class="br-100 h3 w3 dib" alt="avatar")
               p.f6.lh-copy.gray.mv0
@@ -45,7 +45,7 @@ block content
               h3.gray Comments
               hr
               each comment in answer.Comments
-                div.bb.comment
+                div.comment
                   p.measure.lh-copy "#{comment.content}"
                     p.f6.lh-copy.gray.mv0 
                         img(src=comment.User.photo class='br-100 h2 w2 dib')
@@ -53,9 +53,9 @@ block content
                         span  #{comment.User.name}
               if user
                 div
-                  textarea(id="comment-field" + answer.id name="comment" class="db border-box hover-black w-100 measure ba b--black-20 pa2 br3 mb2" aria-describedby="comment-desc")
+                  textarea(id="comment-field" + answer.id name="comment" class="db border-box hover-black w-100 measure ba b--black-20 pa2 br3 mv3" aria-describedby="comment-desc")
                 div.mt0
                   input(data-belongs-to-answer=answer.id class="submit-comment b ph3 pv2 input-reset ba b--blue bg-transparent grow pointer f6 blue" type="button" value="Comment")
               else
-                a(title="Post Comment" id='submit-answer' href="/auth/facebook").f6.fw6.hover-blue.link.ba.b--blue-20.blue.ph3.ph3-ns.pv2.pv2-ns.br1.grow.no-underline.dib.fr Post Comment
+                a(title="Post Comment" href="/auth/facebook").auth-button.mt2.f6.fw6.hover-blue.link.ba.b--blue-20.blue.ph3.ph3-ns.pv2.pv2-ns.br1.grow.no-underline.dib.fr Post Comment
   include includes/footer.pug

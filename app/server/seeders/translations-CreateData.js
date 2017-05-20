@@ -40,6 +40,14 @@ module.exports = {
         UserId: 6,
         createdAt: '08/19/2014 00:00:00',
         updatedAt: '08/19/2014 00:00:00'
+      },
+      {
+        request: 'Begs the question',
+        context: `How would a Japanese person say this phase?`,
+        language: 'Japanese',
+        UserId: 7,
+        createdAt: '08/19/2014 00:00:00',
+        updatedAt: '08/19/2014 00:00:00'
       }
     ])
   },

@@ -12,7 +12,7 @@ exports.home = async (req, res) => {
         }
       },
       include: [ Translation ],
-      limit: 5
+      limit: 10
     })
     const arr = JSON.parse(JSON.stringify(rawArr))
       .sort((a, b) => {
@@ -43,11 +43,12 @@ exports.translate = async (req, res) => {
       },
       include: [
         User,
-        { model: Answer, include: [
-          User,
+        { model: Answer,
+          include: [
+            User,
           { model: Comment, include: [ User ] },
           { model: Votes, include: [ User ] }
-        ]},
+          ]}
       ]
     })
   } catch (e) {
@@ -65,7 +66,6 @@ exports.vote = async (req, res) => {
   - downvote (based on whether up or down arrow was hit)
   - AnswerId (based on ID of answer that was voted on)
   */
-  console.log(`\npath: ${JSON.stringify(req.session.redirectTo)}\n`)
   await Votes.create({
     UserId: req.user.id,
     upvote: req.body.upvote,

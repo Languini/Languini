@@ -237,7 +237,7 @@ exports.getTrans = async (req, res) => {
 }
 
 exports.createTrans = async (req, res) => {
-  req.body.UserId = req.user.id;
+  req.body.UserId = req.user.id
   const transReq = await Translation.create(req.body)
   const translated = await fetch(withQuery(
     'http://www.transltr.org/api/translate',
@@ -371,6 +371,6 @@ exports.postVote = async (req, res) => {
   try {
     res.status(json(await Votes.create(vote)))
   } catch (e) {
-    res.status(500).json("Error submitting vote")
+    res.status(500).json('Error submitting vote')
   }
 }

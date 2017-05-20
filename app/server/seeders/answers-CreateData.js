@@ -35,6 +35,13 @@ module.exports = {
         UserId: 1,
         createdAt: '08/19/2014 00:00:00',
         updatedAt: '08/19/2014 00:00:00'
+      },
+      {
+        content: '質問 、 懇願する',
+        TranslationId: 6,
+        UserId: 1,
+        createdAt: '08/19/2014 00:00:00',
+        updatedAt: '08/19/2014 00:00:00'
       }
     ])
   },

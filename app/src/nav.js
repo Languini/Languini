@@ -1,7 +1,7 @@
 module.exports = {
   navListener: () => {
     $('#home').on('click', event => {
-      window.location.href='/'
+      window.location.href = '/'
     })
     $('#login').on('click', event => {
       window.location.href = '/auth/facebook'
