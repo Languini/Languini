@@ -15,6 +15,12 @@ exports.home = async (req, res) => {
       limit: 5
     })
     const arr = JSON.parse(JSON.stringify(rawArr))
+      .sort((a, b) => {
+        if (a.id > b.id) {
+          return -1
+        }
+        return 1
+      })
     res.render('index', { info: arr })
   } catch (e) {
     console.log(e)
@@ -24,7 +30,7 @@ exports.home = async (req, res) => {
 
 exports.create = (req, res) => {
   req.session.redirectTo = req.path
-  res.render('create')
+  req.user ? res.render('create') : res.redirect('/')
 }
 
 exports.translate = async (req, res) => {
