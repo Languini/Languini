@@ -266,6 +266,7 @@ exports.createAns = async (req, res) => {
   - TranslationId (from a data-id on answer or w/e)
   - content
   */
+  req.body.UserId = req.user.id
   try {
     res.status(200).json(await Answer.create(req.body))
   } catch (e) {
