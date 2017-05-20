@@ -2,27 +2,33 @@ extends layout
 
 block content
   section(class="mw8 center pt3 ph6 helvetica")
-    h4.relative.bottom--2.dib.pr2.bg-white.serif 
-      span.f-subheadline.helvetica.blue.fw6 #{language} 
-    article.pt4.bt.b--black-10.ph3.ph0-l
+    h4.relative.bottom--2.dib.pr2.bg-white.serif
+      span.f-subheadline.helvetica.blue.fw6 #{language}
+    article(id="translation-request" data-translate-id=id).pt4.bt.b--black-10.ph3.ph0-l
       div.flex.flex-column.flex-row-ns
           div.w-100.w-80-ns.pr3-ns.order-1.order-1-ns
               h1.f2.mt0.lh-title "#{request}"
               p.f5.f4-l.lh-copy #{context}
-              a(title="Post Answer" id='submit-answer' href="/post-answer/").f6.fw6.hover-blue.link.ba.b--blue-20.blue.ph3.ph3-ns.pv2.pv2-ns.br1.grow.no-underline.dib.fr Post Answer
+              if user
+                div
+                  textarea(id="answer-box" name="comment" class="db border-box hover-black w-100 measure ba b--black-20 pa2 br2 mb2" aria-describedby="comment-desc")
+                div.mt0
+                  input(id="submit-answer" class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6" type="button" value="Answer")
+              else
+                a(title="Post Answer" id='submit-answer' href="/auth/facebook").f6.fw6.hover-blue.link.ba.b--blue-20.blue.ph3.ph3-ns.pv2.pv2-ns.br1.grow.no-underline.dib.fr Post Answer
           div.pl3-ns.order-2.order-2-ns.mb2.mb0-ns.w-100.w-20-ns
               img(src=User.photo class="br-100 h3 w3 dib" alt="avatar")
               p.f6.lh-copy.gray.mv0
                   span  #{User.name}
       div.fr.lh-copy.mv0.ph4.pt2.ph0-l
       h4.relative.bottom--2.dib.pr3.bg-white.f4 Answers
-      article.pv4.bt.bb.b--black-10.ph3.ph0-l
+      article(id="answer-container").pv4.bt.bb.b--black-10.ph3.ph0-l
         each answer in Answers
-          article.pa3.pa5-ns.shadow-1
+          article(data-answer-id=answer.id data-user-id=answer.User.id).pa3.pa5-ns.shadow-1
             h1 #{answer.content}
             div.cf
               dl.fl.fn-l.w-50.dib-l.w-auto-l.lh-title.mr5-l
-                dd.f3.fw6.ml0.gray.mv0 
+                dd.f3.fw6.ml0.gray.mv0
                   img(src=answer.User.photo class='br-100 h3 w3 dib')
               dl.fl.fn-l.w-50.dib-l.w-auto-l.lh-title.mr5-l
                 dd.f6.fw4.ml0.gray.mv0 Upvotes
@@ -38,18 +44,16 @@ block content
               hr
               each comment in answer.Comments
                 p.measure.lh-copy #{comment.content}
-                  p.f6.lh-copy.gray.mv0 
+                  p.f6.lh-copy.gray.mv0
                       img(src=comment.User.photo class='br-100 h2 w2 dib')
                       br
                       span  #{comment.User.name}
                 hr
               if user
-                form(action="sign-up_submit" method="get" accept-charset="utf-8")
-                  div
-                    textarea(id="comment" name="comment" class="db border-box hover-black w-100 measure ba b--black-20 pa2 br2 mb2" aria-describedby="comment-desc")
-                  div.mt0
-                    input(class="b ph3 pv2 input-reset ba b--blue bg-transparent grow pointer f6 blue" type="submit" value="Comment")
+                div
+                  textarea(id="comment-field" + answer.id name="comment" class="db border-box hover-black w-100 measure ba b--black-20 pa2 br2 mb2" aria-describedby="comment-desc")
+                div.mt0
+                  input(data-belongs-to-answer=answer.id class="submit-comment b ph3 pv2 input-reset ba b--blue bg-transparent grow pointer f6 blue" type="button" value="Comment")
               else
-
-
+                a(title="Post Comment" id='submit-answer' href="/auth/facebook").f6.fw6.hover-blue.link.ba.b--blue-20.blue.ph3.ph3-ns.pv2.pv2-ns.br1.grow.no-underline.dib.fr Post Comment
   include includes/footer.pug

@@ -1,7 +1,10 @@
 const navHandler = require('./nav')
 const homeHandler = require('./home')
 const createObject = require('./create')
+const translationObject = require('./translation')
 
 navHandler.navListener()
 homeHandler.homeListener()
 createObject.listenForSubmission()
+translationObject.listenForCommentSub()
+translationObject.listenForAnswerSub()
