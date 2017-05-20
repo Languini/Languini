@@ -43,7 +43,7 @@ describe('Comments', () => {
     it('it should not POST a comment without every field', done => {
       const comment = {
         content: 'The Lord of the Rings',
-        UserId: '2',
+        UserId: '2'
       }
       chai.request(server)
           .post('/comments')
@@ -58,7 +58,7 @@ describe('Comments', () => {
   describe('/GET Comment', () => {
     it('it should not GET a comment without providing appropriate field', done => {
       const comment = {
-        jim: '2',
+        jim: '2'
       }
       chai.request(server)
           .get('/comments')
@@ -77,7 +77,7 @@ describe('Answers', () => {
     it('it should not POST an answer without every field', done => {
       const answer = {
         content: 'The Lord of the Rings',
-        UserId: '2',
+        UserId: '2'
       }
       chai.request(server)
           .post('/answers')
@@ -92,7 +92,7 @@ describe('Answers', () => {
   describe('/GET Answer', () => {
     it('it should not GET a answer without providing appropriate field', done => {
       const answer = {
-        jim: '2',
+        jim: '2'
       }
       chai.request(server)
           .get('/answers')

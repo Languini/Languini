@@ -2,28 +2,31 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     fb_id: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
+      validate: {
+        notNull: true,
+        unique: true
+      }
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
       validate: {
-        isEmail: true
+        isEmail: true,
+        unique: true
       }
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
+      validate: {
+        notNull: true,
+        unique: true
+      }
     },
     photo: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
       validate: {
-        isUrl: true
+        isUrl: true,
+        notNull: true,
+        unique: true
       }
     }
   }, {

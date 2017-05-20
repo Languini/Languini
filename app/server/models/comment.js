@@ -3,9 +3,6 @@ module.exports = (sequelize, DataTypes) => {
     content: {
       type: DataTypes.STRING,
       allowNull: false
-      // validate: {
-      //   len: [2, 500]
-      // }
     }
   }, {
     classMethods: {
