@@ -1,6 +1,12 @@
-// note: we can use jQuery globally with '$'
-require('wg-fetch')
+const navHandler = require('./nav')
+const homeHandler = require('./home')
+const createObject = require('./create')
+const voteHandler = require('./vote')
+const translationObject = require('./translation')
 
-const createObject = require('./create.js')
-
+navHandler.navListener()
+homeHandler.homeListener()
 createObject.listenForSubmission()
+voteHandler.voteListener()
+translationObject.listenForCommentSub()
+translationObject.listenForAnswerSub()

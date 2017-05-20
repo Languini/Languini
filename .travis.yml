@@ -1,4 +1,10 @@
 language: node_js
 node_js:
-  - "iojs"
-  - "7"
+  - "stable"
+before_script:
+  - npm prune
+script:
+  - yarn test
+  - yarn coverage-check
+after_success:
+  - yarn coveralls

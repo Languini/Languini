@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Rubik:500');
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+.lobster {
+  font-family: 'Lobster', cursive
+}
+
+.rubik {
+  font-family: 'Rubik', sans-serif;
+}
+
+.nunito {
+  font-family: 'Nunito', sans-serif;
+}
+
+input:focus {
+  outline: none
+}
+
+textarea:  {
+  outline: none
+}
+
+textarea:focus {
+  outline: none
+}
+
+.comment {
+  border-bottom: 1px solid;
+}
+
+.answer:first-child #user-photo {
+  border-radius: 0;
+}
+
+.comment:last-of-type {
+  border-bottom: none;
+}
+
+.post:last-child {
+  border-bottom:none
+}
+
+.auth-button {
+  float: left
+}

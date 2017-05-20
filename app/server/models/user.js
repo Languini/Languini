@@ -1,4 +1,3 @@
-'use strict'
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     fb_id: {
@@ -36,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
         User.hasMany(models.Translation)
         User.hasMany(models.Answer)
         User.hasMany(models.Comment)
+        User.hasMany(models.Votes)
       }
     }
   })

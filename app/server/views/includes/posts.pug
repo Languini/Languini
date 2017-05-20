@@ -1,0 +1,13 @@
+div(class='mb6-ns mb5')
+  ul(class="list pl0 mt0 center w-70 helvetica")
+    each item in info
+      div(class='post bb b--black-10' data-trans=item.id)
+        a(class='link' href='/posts/item.id')
+          li(class="flex items-center dim lh-copy pa3 ph0-l")
+            img(class="w2 h2 w3-ns h3-ns br-100" src=item.User.photo)
+            div(class="pl3 flex-auto mv4")
+              span(class="f3 db black-70 b")=item.request
+              span(class="f6 db i black-70")=item.User.name
+            div(class="dtc v-mid")
+              form(class="w-100 tr")
+                button(class="f6 button-reset bg-white ba b--blue dim pointer pv1 blue" type="submit")=item.language

@@ -1,8 +1,12 @@
 doctype html
 html
-    head
-        title=title
-        link(rel='stylesheet', href='https://unpkg.com/tachyons/css/tachyons.min.css')
-        link(rel='stylesheet', href='../../src/assets/style.css')
-    body
-        block content
+  head
+    title Languini
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css')
+    link(rel='stylesheet', href='https://unpkg.com/tachyons/css/tachyons.min.css')
+    link(rel='stylesheet', href='../../static/assets/css/style.css')
+    link(rel="icon" type="image/png" sizes="32x32" href="/favicon.png")
+  body
+    include includes/nav.pug
+    block content
+  script(src='../../static/dist/bundle.min.js')

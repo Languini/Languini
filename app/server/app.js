@@ -1,25 +1,36 @@
-const express = require('express'),
-  helmet = require('helmet'),
-  compression = require('compression'),
-  validator = require('express-validator'),
-  session = require('express-session'),
-  crypto = require('crypto'),
-  randToken = require('rand-token').generator({
-    chars: 'A-Z',
-    source: crypto.randomBytes
-  }),
-  bodyParser = require('body-parser'),
-  path = require('path'),
-  uuidV4 = require('uuid/v4'),
-  fs = require('fs'),
-  rfs = require('rotating-file-stream'),
-  morgan = require('morgan'),
-  pug = require('pug'),
-  app = express(),
-  { passport } = require('./controllers/auth.controller'),
-  authRouter = require('./routes/auth'),
-  viewRouter = require('./routes/views'),
-  apiRouter = require('./routes/api')
+const express = require('express')
+const cors = require('cors')
+const helmet = require('helmet')
+const compression = require('compression')
+const validator = require('express-validator')
+const session = require('express-session')
+const passport = require('passport')
+const crypto = require('crypto')
+const randToken = require('rand-token').generator({
+  chars: 'A-Z',
+  source: crypto.randomBytes
+})
+const bodyParser = require('body-parser')
+const path = require('path')
+const uuidV4 = require('uuid/v4')
+const fs = require('fs')
+const rfs = require('rotating-file-stream')
+const morgan = require('morgan')
+const pug = require('pug')
+const favicon = require('serve-favicon')
+const viewRouter = require('./routes/views.routes')
+const apiRouter = require('./routes/api.routes')
+
+const app = express()
+
+app.use(favicon(__dirname + '/favicon.ico'))
+
+const corsOpts = {
+  origin: 'http://localhost:5000/',
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOpts))
 
 app.use(helmet())
 app.use(compression())
@@ -44,7 +55,7 @@ app.use((req, res, next) => {
 app.use(morgan(
     ':id :method :url :status :res[content-length] - :response-time ms :date[web]',
     { stream: accessLogStream },
-    { skip: (req, res) => res.statusCode < 40 }
+    { skip: (req, res) => res.statusCode < 400 }
 ))
 
 // Pug, the view engine
@@ -61,20 +72,33 @@ app.use(validator())
 // register our static assets
 app.use('/static', express.static(path.join(__dirname, '/../static')))
 
-// setup in-memory session storage (a no-no, should be using redis)
-app.use(session({ secret: randToken.generate(16), saveUninitialized: false, resave: false }))
+// development debugging view
+require('express-debug')(app, {})
 
-// register passport settings
+// setup in-memory session storage (a no-no, should be using redis)
+app.use(session({ secret: randToken.generate(64), saveUninitialized: true, resave: true }))
+
+// setup passport
+require('./lib/passport.init')(passport)
 app.use(passport.initialize())
 app.use(passport.session())
 
-// register routers
-app.use('/api/', apiRouter)
+// make user object available to every view
+app.use((req, res, next) => {
+  res.locals.user = req.user
+  next()
+})
+
+// register routes
+require('./routes/auth.routes')(app, passport)
 app.use('/', viewRouter)
-// resource not found
+app.use('/api', apiRouter)
+
+// error handlers
+
+// resource not found request handler
 app.use((req, res) => {
   res.status(404).send('404')
-  console.log('404')
 })
 
 // export our server for consumption by bin/www

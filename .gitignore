@@ -61,8 +61,5 @@ typings/
 # Heroku
 Procfile
 
-# sequelize config
-config
-
-# webstorm 
+# webstorm
 .idea/
