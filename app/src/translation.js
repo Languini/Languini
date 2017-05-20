@@ -15,7 +15,7 @@ module.exports = {
           location.reload()
         })
       } else {
-        alert('Please submit a valid answer, ya dumb dumb')
+        $("#comment-field" + answerId).addClass("ba bw1 b--red")
       }
     })
   },
@@ -34,7 +34,7 @@ module.exports = {
           location.reload()
         })
       } else {
-        alert('Please submit a valid answer, ya dumb dumb')
+        $("#answer-box").addClass("ba bw1 b--red")
       }
     })
   }
