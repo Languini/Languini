@@ -76,9 +76,10 @@ app.use('/static', express.static(path.join(__dirname, '/../static')))
 require('express-debug')(app, {})
 
 // setup in-memory session storage (a no-no, should be using redis)
-app.use(session({ secret: randToken.generate(16), saveUninitialized: false, resave: false }))
+app.use(session({ secret: randToken.generate(64), saveUninitialized: true, resave: true }))
 
-// register passport settings
+// setup passport
+require('./lib/passport.init')(passport)
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -93,10 +94,11 @@ require('./routes/auth.routes')(app, passport)
 app.use('/', viewRouter)
 app.use('/api', apiRouter)
 
+// error handlers
+
 // resource not found request handler
 app.use((req, res) => {
   res.status(404).send('404')
-  console.log('404')
 })
 
 // export our server for consumption by bin/www
