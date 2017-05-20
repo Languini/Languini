@@ -1,10 +1,9 @@
 nav(class='dt w-100 border-box ph4 pt3 ph')
   a(id='home' class='dtc v-mid mid-gray link dim w-25' hef='#' title='Home')
-    img(class='dib w3 h3' src='../../static/assets/img/language.svg' alt='Languini')
+    img(class='dib w3 h3' src='https://image.flaticon.com/icons/svg/401/401538.svg' alt='Languini')
   if user
     div(class='dtc v-mid w-75 tr')
-      a(class='login link dim dark-gray f6 f5-ns dib mr3 mr4-nsw2 dib helvetica dark-gray' href='#' id='logout' title='Login') Logout
-      img(src=user.photo class="dib dim dark-gray h2 f6 f5-ns br-100 ba" alt="User Pic")
+      img(src=user.photo class="dib dim h2 f6 f5-ns br-100 ba" id='logout' alt="User Pic" data-id=user.id)
   else 
     div(class='dtc v-mid w-75 tr')
       a(class='logout link dim dark-gray f6 f5-ns dib sans-serif' id='login' href='#' title='Login') Login

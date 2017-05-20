@@ -10,6 +10,14 @@ textarea:focus {
   outline: none
 }
 
+.answer:first-child #user-photo {
+  border-radius: 0;
+}
+
+.comment:last-child {
+  border-bottom: 0
+}
+
 .post:last-child {
   border-bottom:none
 }

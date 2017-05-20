@@ -7,3 +7,4 @@ module.exports = router
   .get('/', viewsController.home)
   .get('/create', viewsController.create)
   .get('/posts/:id', viewsController.translate)
+  .post('/vote', viewsController.vote)

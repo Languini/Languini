@@ -18,31 +18,33 @@ block content
       h4.relative.bottom--2.dib.pr3.bg-white.f4 Answers
       article.pv4.bt.bb.b--black-10.ph3.ph0-l
         each answer in Answers
-          article.pa3.pa5-ns.shadow-1
-            h1 #{answer.content}
+          article.pa3.pa5-ns.shadow-1.answer(data-id=answer.id)
+            h1 "#{answer.content}"
             div.cf
               dl.fl.fn-l.w-50.dib-l.w-auto-l.lh-title.mr5-l
                 dd.f3.fw6.ml0.gray.mv0 
-                  img(src=answer.User.photo class='br-100 h3 w3 dib')
+                  img(id='user-photo' src=answer.User.photo class='br-100 h3 w3 dib')
               dl.fl.fn-l.w-50.dib-l.w-auto-l.lh-title.mr5-l
                 dd.f6.fw4.ml0.gray.mv0 Upvotes
                 dd.f3.fw6.ml0.gray.mv0
-                  = answer.Votes.length && answer.Votes.filter(function(val){ return val.upvote }).length
+                  = answer.Votes.filter(vote => vote.upvote === true).length || 0
+                  img(src='https://image.flaticon.com/icons/svg/25/25297.svg' id='thumbs-up' class='thumbs dim ph2 h1 w1')
               dl.fl.fn-l.w-50.dib-l.w-auto-l.lh-title.mr5-l
                 dd.f6.fw4.ml0.gray.mv0 Downvotes
                 dd.f3.fw6.ml0.gray.mv0
-                  = answer.Votes.length && answer.Votes.filter(function(val){ return val.downvote }).length
+                  = answer.Votes.filter(vote => vote.downvote === true).length || 0
+                  img(src='https://image.flaticon.com/icons/svg/25/25237.svg' id='thumbs-down' class='thumbs dim ph2 h1 w1')
             br
             article.pa3.pa5.shadow-3
               h3.gray Comments
               hr
               each comment in answer.Comments
-                p.measure.lh-copy #{comment.content}
-                  p.f6.lh-copy.gray.mv0 
-                      img(src=comment.User.photo class='br-100 h2 w2 dib')
-                      br
-                      span  #{comment.User.name}
-                hr
+                div.bb.comment
+                  p.measure.lh-copy "#{comment.content}"
+                    p.f6.lh-copy.gray.mv0 
+                        img(src=comment.User.photo class='br-100 h2 w2 dib')
+                        br
+                        span  #{comment.User.name}
               if user
                 form(action="sign-up_submit" method="get" accept-charset="utf-8")
                   div
