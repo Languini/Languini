@@ -266,6 +266,7 @@ exports.createAns = async (req, res) => {
   - TranslationId (from a data-id on answer or w/e)
   - content
   */
+  req.body.UserId = req.user.id
   try {
     res.status(200).json(await Answer.create(req.body))
   } catch (e) {
@@ -345,6 +346,7 @@ exports.createComm = async (req, res) => {
   - AnswerId (from a data-id on comment or w/e)
   - content
   */
+  req.body.UserId = req.user.id
   try {
     res.status(200).json(await Comment.create(req.body))
   } catch (e) {

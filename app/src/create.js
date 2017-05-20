@@ -71,7 +71,20 @@ module.exports = {
           window.location.href = "/posts/" + result.translation_request.id;
         })
       } else {
-        alert('Please provide a request and context')
+        $('#request').removeClass("ba bw1 b--red")
+        $('#context').removeClass("ba bw1 b--red")
+        $('#request').removeClass("ba bw1 b--green")
+        $('#context').removeClass("ba bw1 b--green")
+        if (!translation.request.length && !translation.context.length) {
+          $('#request').addClass("ba bw1 b--red")
+          $('#context').addClass("ba bw1 b--red")
+        } else if (!translation.request.length) {
+          $('#request').addClass("ba bw1 b--red")
+          $('#context').addClass("ba bw1 b--green")
+        } else {
+          $('#request').addClass("ba bw1 b--green")
+          $('#context').addClass("ba bw1 b--red")
+        }
       }
     })
   }
