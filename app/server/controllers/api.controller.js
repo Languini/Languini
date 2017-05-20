@@ -1,3 +1,0 @@
-exports.someFunction = (req, res) => {
-
-}

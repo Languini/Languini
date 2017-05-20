@@ -5,15 +5,16 @@ const { User, Translation, Votes, Comment, Answer } = require('../models')
 exports.home = async (req, res) => {
   req.session.redirectTo = req.path
   try {
-    const rawArr = await User.findAll({
+    const rawArr = await Translation.findAll({
       where: {
         id: {
           $gte: 2
         }
       },
-      include: [ Translation ],
+      include: [ User ],
       limit: 10
     })
+    console.log(`\n\n\n!!!!!!! ${JSON.stringify(rawArr)}\n\n\n`)
     const arr = JSON.parse(JSON.stringify(rawArr))
       .sort((a, b) => {
         if (a.id > b.id) {
@@ -21,6 +22,7 @@ exports.home = async (req, res) => {
         }
         return 1
       })
+    console.log(`\n\n\n!!!!!!! ${JSON.stringify(arr[0])}\n\n\n`)
     res.render('index', { info: arr })
   } catch (e) {
     console.log(e)
