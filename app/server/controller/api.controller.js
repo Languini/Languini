@@ -369,8 +369,7 @@ exports.postVote = async (req, res) => {
     AnswerId: req.body.AnswerId
   }
   try {
-    res.status(json(await Votes.upsert(vote)))
-    // returns true if row did not exist
+    res.status(json(await Votes.create(vote)))
   } catch (e) {
     res.status(500).json("Error submitting vote")
   }

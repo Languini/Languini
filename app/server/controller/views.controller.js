@@ -56,3 +56,21 @@ exports.translate = async (req, res) => {
   }
   res.render('translation', JSON.parse(JSON.stringify(translation)))
 }
+
+exports.vote = async (req, res) => {
+  /*
+  expects the following params:
+  - UserId (will be req.user.id)
+  - upvote (based on whether up or down arrow was hit)
+  - downvote (based on whether up or down arrow was hit)
+  - AnswerId (based on ID of answer that was voted on)
+  */
+  console.log(`\npath: ${JSON.stringify(req.session.redirectTo)}\n`)
+  await Votes.create({
+    UserId: req.user.id,
+    upvote: req.body.upvote,
+    downvote: req.body.downvote,
+    AnswerId: req.body.AnswerId
+  })
+  res.redirect(req.session.redirectTo)
+}
