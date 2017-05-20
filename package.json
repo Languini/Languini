@@ -51,6 +51,7 @@
         "rand-token": "^0.3.0",
         "rotating-file-stream": "^1.2.2",
         "secure-random": "^1.1.1",
+        "select2": "^4.0.3",
         "sequelize": "^3.30.4",
         "uuid": "^3.0.1",
         "whatwg-fetch": "^2.0.3",
@@ -93,8 +94,8 @@
         "node": "7.10.0"
     },
     "config": {
-      "ghooks": {
-        "pre-commit": "yarn test && yarn coverage-check"
-      }
+        "ghooks": {
+            "pre-commit": "yarn test && yarn coverage-check"
+        }
     }
 }
