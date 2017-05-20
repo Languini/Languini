@@ -346,6 +346,7 @@ exports.createComm = async (req, res) => {
   - AnswerId (from a data-id on comment or w/e)
   - content
   */
+  req.body.UserId = req.user.id
   try {
     res.status(200).json(await Comment.create(req.body))
   } catch (e) {

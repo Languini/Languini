@@ -1,8 +1,22 @@
 module.exports = {
   listenForCommentSub: () => {
-    $("#submit-comment").on("click", (event) => {
+    $(".submit-comment").on("click", function (event) {
       event.preventDefault()
-      console.log("This works.")
+      const answerId = $(this).attr("data-belongs-to-answer")
+      console.log(answerId)
+      const comment = {
+        content: $("#comment-field" + answerId).val().trim(),
+        AnswerId: answerId,
+        UserId: 3
+      }
+      if (comment.content.length) {
+        $.post('/api/comments', comment, result => {
+          console.log(result)
+          location.reload()
+        })
+      } else {
+        alert('Please submit a valid answer, ya dumb dumb')
+      }
     })
   },
 
