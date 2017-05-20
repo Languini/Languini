@@ -1,5 +1,5 @@
 module.exports = {
-  listenForPostClick: () => {
+  homeListener: () => {
     $('.post').on('click', event => {
       const id = $(event.delegateTarget).attr('data-trans')
       $.get(`/posts/${id}`, result => {

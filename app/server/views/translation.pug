@@ -38,7 +38,9 @@ block content
               hr
               each comment in answer.Comments
                 p.measure.lh-copy #{comment.content}
-                  p.f6.lh-copy.gray.mv0 By
+                  p.f6.lh-copy.gray.mv0 
+                      img(src=comment.User.photo class='br-100 h2 w2 dib')
+                      br
                       span  #{comment.User.name}
                 hr
               if user
@@ -46,7 +48,7 @@ block content
                   div
                     textarea(id="comment" name="comment" class="db border-box hover-black w-100 measure ba b--black-20 pa2 br2 mb2" aria-describedby="comment-desc")
                   div.mt0
-                    input(class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6" type="submit" value="Comment")
+                    input(class="b ph3 pv2 input-reset ba b--blue bg-transparent grow pointer f6 blue" type="submit" value="Comment")
               else
 
 
