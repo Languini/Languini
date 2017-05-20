@@ -2,11 +2,11 @@ module.exports = (sequelize, DataTypes) => {
   const Votes = sequelize.define('Votes', {
     upvote: {
       type: DataTypes.BOOLEAN,
-      default: false,
+      default: false
     },
     downvote: {
       type: DataTypes.BOOLEAN,
-      default: false,
+      default: false
     }
   }, {
     classMethods: {

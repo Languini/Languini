@@ -17,10 +17,13 @@ const fs = require('fs')
 const rfs = require('rotating-file-stream')
 const morgan = require('morgan')
 const pug = require('pug')
+const favicon = require('serve-favicon')
 const viewRouter = require('./routes/views.routes')
 const apiRouter = require('./routes/api.routes')
 
 const app = express()
+
+app.use(favicon(__dirname + '/favicon.ico'))
 
 const corsOpts = {
   origin: 'http://localhost:5000/',

@@ -5,17 +5,17 @@ module.exports = {
         const data = {
           AnswerId: $(event.target).closest('.answer').data('id')
         }
-        $(event.target).attr('id') === 'thumbs-up' ?
-          (
+        $(event.target).attr('id') === 'thumbs-up'
+          ? (
             data.upvote = true,
             data.downvote = false
           )
-          :
-          (
-            data.upvote = false ,
+          : (
+            data.upvote = false,
             data.downvote = true
           )
         $.post('/vote', data, result => {
+          location.reload()
         })
       })
     }

@@ -2,7 +2,7 @@ extends layout
 
 block content
   div.helvetica.mv5
-    h1(class="ph6 f2 lh-copy blue") Create A Request
+    h1(class="ph6 f2 lh-copy blue") Post a Request
     form(id='post-form' class="ph6 black-100" method='post')
       div(class="measure")
         label(for="name" class="f6 b db mb2") Request
@@ -19,5 +19,5 @@ block content
         textarea(id="context" name="comment" class="db border-box hover-black w-100 measure-wide ba b--black-20 pa2 br2 mb2" aria-describedby="comment-desc")
         small(id="context-desc" class="f6 black-60") This will help users understand the context for your request, improving the accuracy of the translations.
       div(class="mt4")
-        a(id="submit-post" class="f6 link dim br2 ba bw1 ph3 pv2 mb2 dib blue grow" href="") Submit
+        a(id="submit-post" class="f6 link dim br2 ba ph3 pv2 mb2 dib blue grow" href="") Submit
   include includes/footer.pug
