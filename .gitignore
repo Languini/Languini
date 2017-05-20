@@ -61,14 +61,5 @@ typings/
 # Heroku
 Procfile
 
-# sequelize config
-config
-
 # webstorm
 .idea/
-
-# knexfile
-knexfile.js
-
-# bundle
-dist/
