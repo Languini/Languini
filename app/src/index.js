@@ -1,6 +1,10 @@
-const createObject = require('./create.js')
-const translationObject = require('./translation.js')
+const navHandler = require('./nav')
+const homeHandler = require('./home')
+const createObject = require('./create')
+const translationObject = require('./translation')
 
+navHandler.listenForLog()
+homeHandler.listenForPostClick()
 createObject.listenForSubmission()
 translationObject.listenForCommentSub()
 translationObject.listenForAnswerSub()

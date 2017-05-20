@@ -3,8 +3,8 @@ nav(class='dt w-100 border-box ph4 pt3 ph')
     img(class='dib w3 h3' src='../../static/assets/img/language.svg' alt='Languini')
   if user
     div(class='dtc v-mid w-75 tr')
-      a(class='login link dim dark-gray f6 f5-ns dib mr3 mr4-nsw2 dib helvetica dark-gray' href='#' title='Login') Logout
+      a(class='login link dim dark-gray f6 f5-ns dib mr3 mr4-nsw2 dib helvetica dark-gray' href='#' id='logout' title='Login') Logout
       img(src=user.photo class="dib dim dark-gray h2 f6 f5-ns br-100 ba" alt="User Pic")
   else 
     div(class='dtc v-mid w-75 tr')
-      a(class='logout link dim dark-gray f6 f5-ns dib sans-serif' href='#' title='Login') Login
+      a(class='logout link dim dark-gray f6 f5-ns dib sans-serif' id='login' href='#' title='Login') Login

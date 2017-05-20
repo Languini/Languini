@@ -2,15 +2,8 @@ const winston = require('winston')
 
 const { User, Translation, Votes, Comment, Answer } = require('../models')
 
-const logger = new (winston.Logger)({
-  transports: [
-    new (winston.transports.Console)(),
-    new (winston.transports.File)({
-      filename: 'somefile.log'
-    })]
-})
-
 exports.home = async (req, res) => {
+  req.session.redirectTo = req.path
   try {
     const rawArr = await User.findAll({
       where: {
@@ -25,16 +18,18 @@ exports.home = async (req, res) => {
     res.render('index', { info: arr })
   } catch (e) {
     console.log(e)
+    res.redirect('/')
   }
 }
 
 exports.create = (req, res) => {
+  req.session.redirectTo = req.path
   res.render('create')
 }
 
 exports.translate = async (req, res) => {
+  req.session.redirectTo = req.path
   let translation
-  let user
   try {
     translation = await Translation.findOne({
       where: {
@@ -50,8 +45,8 @@ exports.translate = async (req, res) => {
       ]
     })
   } catch (e) {
-    translation = "Error getting translation"
+    console.log(e)
+    res.redirect(req.session.redirectTo)
   }
-  console.log(JSON.parse(JSON.stringify(translation.dataValues)))
-  res.render('translation', translation.dataValues)
+  res.render('translation', JSON.parse(JSON.stringify(translation)))
 }
