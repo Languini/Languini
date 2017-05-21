@@ -64,8 +64,5 @@ Procfile
 # webstorm
 .idea/
 
-# config
-config/
-
 # webpack
 dist/
