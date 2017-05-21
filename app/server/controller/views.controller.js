@@ -14,7 +14,6 @@ exports.home = async (req, res) => {
       include: [ User ],
       limit: 10
     })
-    console.log(`\n\n\n!!!!!!! ${JSON.stringify(rawArr)}\n\n\n`)
     const arr = JSON.parse(JSON.stringify(rawArr))
       .sort((a, b) => {
         if (a.id > b.id) {
@@ -22,7 +21,6 @@ exports.home = async (req, res) => {
         }
         return 1
       })
-    console.log(`\n\n\n!!!!!!! ${JSON.stringify(arr[0])}\n\n\n`)
     res.render('index', { info: arr })
   } catch (e) {
     console.log(e)
