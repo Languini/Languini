@@ -5,6 +5,5 @@ before_script:
   - npm prune
 script:
   - yarn test
-  - yarn coverage-check
 after_success:
-  - yarn coveralls
+  - yarn cover
