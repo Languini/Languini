@@ -34,7 +34,6 @@ exports.create = (req, res) => {
 }
 
 exports.translate = async (req, res) => {
-  req.session.redirectTo = req.path
   let translation
   try {
     translation = await Translation.findOne({
@@ -52,9 +51,10 @@ exports.translate = async (req, res) => {
       ]
     })
   } catch (e) {
-    console.log(e)
-    res.redirect(req.session.redirectTo)
+    console.error((e))
+    res.redirect('/')
   }
+  req.session.redirectTo = req.path
   res.render('translation', JSON.parse(JSON.stringify(translation)))
 }
 

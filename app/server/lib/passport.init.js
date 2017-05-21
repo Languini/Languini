@@ -25,6 +25,9 @@ module.exports = passport => {
         .spread((user, created) => {
           return cb(null, user)
         })
+        .catch(e => {
+          return console.log(e)
+        })
   }
 
   const dehydrate = (user, cb) => cb(null, user.id)

@@ -3,16 +3,10 @@ module.exports = (sequelize, DataTypes) => {
     request: {
       type: DataTypes.STRING,
       allowNull: false
-      // validate: {
-      //   len: [2, 200]
-      // }
     },
     context: {
       type: DataTypes.STRING,
       allowNull: false
-      // validate: {
-      //   len: [2, 500]
-      // }
     },
     language: {
       type: DataTypes.STRING,
