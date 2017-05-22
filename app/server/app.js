@@ -25,8 +25,13 @@ const app = express()
 
 app.use(favicon(__dirname + '/favicon.ico'))
 
+const origin = process.env.NODE_ENV === 'production' ?
+  ( 'http://languini.herokuapp.com' )
+  :
+  ( 'http://localhost:5000')
+
 const corsOpts = {
-  origin: 'http://localhost:5000/',
+  origin: origin,
   optionsSuccessStatus: 200
 }
 

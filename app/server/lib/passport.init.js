@@ -4,11 +4,16 @@ const passport = require('passport')
 const FacebookStrategy = require('passport-facebook').Strategy
 const { User } = require('../models')
 
+const callbackURL = process.env.NODE_ENV === 'production' ?
+  ( 'http://languini.herokuapp.com/auth/facebook/callback' )
+  :
+  ( 'http://localhost:5000/auth/facebook/callback')
+
 module.exports = passport => {
   const facebookOptions = {
     clientID: process.env.APP_ID,
     clientSecret: process.env.APP_SECRET,
-    callbackURL: 'http://localhost:5000/auth/facebook/callback',
+    callbackURL: callbackURL,
     profileFields: ['id', 'emails', 'photos', 'displayName']
   }
 
