@@ -63,3 +63,6 @@ Procfile
 
 # webpack
 dist/
+
+# coveralls config
+.coveralls.yml
