@@ -73,7 +73,7 @@ app.use(validator())
 app.use('/static', express.static(path.join(__dirname, '/../static')))
 
 // development debugging view
-require('express-debug')(app, {})
+// require('express-debug')(app, {})
 
 // setup in-memory session storage (a no-no, should be using redis)
 app.use(session({ secret: randToken.generate(64), saveUninitialized: true, resave: true }))
