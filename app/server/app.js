@@ -76,7 +76,7 @@ app.use('/static', express.static(path.join(__dirname, '/../static')))
 // require('express-debug')(app, {})
 
 // setup in-memory session storage (a no-no, should be using redis)
-app.use(session({ secret: randToken.generate(64), saveUninitialized: true, resave: true }))
+app.use(session({ secret: randToken.generate(64), saveUninitialized: false, resave: false }))
 
 // setup passport
 require('./lib/passport.init')(passport)
